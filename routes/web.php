@@ -11,3 +11,4 @@
 |
 */
 
+Route::get('/{path?}', 'AppController@show')->where('path', '.*');
