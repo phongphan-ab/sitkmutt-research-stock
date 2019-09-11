@@ -130,6 +130,9 @@ const IndexPage = () => (
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
+                        <div style={{ padding: 24, background: '#fff' }}>
+                            Bill is a cat.
+                        </div>
                     </div>
                     <Footer style={{
                         flexShrink: '0',
