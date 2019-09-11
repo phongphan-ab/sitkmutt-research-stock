@@ -123,6 +123,14 @@ const IndexPage = () => (
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                         Bill is a cat.
                     </div>
+                    <Footer style={{
+                        flexShrink: '0',
+                        padding: 0
+                    }}>
+                        <TextCenter>
+                            <Text disabled style={{ cursor: 'auto' }}>สงวนลิขสิทธิ์ พ.ศ. 2562 คณะเทคโนโลยีสารสนเทศ มจธ. ขอสงวนสิทธิ์ทุกประการ</Text>
+                        </TextCenter>
+                    </Footer>
                 </Content>
             </Layout>
         </Layout>
