@@ -1,9 +1,11 @@
 import React from 'react'
-import { Layout, Menu, Input, Icon, Breadcrumb } from 'antd'
+import { Layout, Menu, Input, Icon, Breadcrumb, Typography, Avatar, Dropdown } from 'antd'
+import styled, { keyframes } from 'styled-components'
 
-const { Header, Sider, Content } = Layout
+const { Header, Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
 const { Search } = Input
+const { Text } = Typography
 
 const IndexPage = () => (
     <Layout>
