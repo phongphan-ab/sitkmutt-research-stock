@@ -97,6 +97,8 @@ const IndexPage = () => (
                     display: 'flex',
                     alignItems: 'center',
                     width: '100%',
+                    maxWidth: '640px',
+                    marginRight: 'auto'
                 }}>
                     <NavbarSearchBox placeholder="ค้นหาพัสดุที่นี่" style={{
                         width: '100%',
