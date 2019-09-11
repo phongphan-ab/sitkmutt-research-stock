@@ -115,12 +115,6 @@ const IndexPage = () => (
                 </Menu>
             </Sider>
             <Layout style={{ marginLeft: 272 }}>
-                    <Breadcrumb style={{ margin: '0 0 16px 0' }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                        Bill is a cat.
                 <Content style={{
                     margin: '16px',
                     overflow: 'initial',
@@ -131,6 +125,11 @@ const IndexPage = () => (
                     <div style={{
                         flex: '1 0 auto'
                     }}>
+                        <Breadcrumb style={{ margin: '0 0 16px 0' }}>
+                            <Breadcrumb.Item href="/"><Icon type="home" /></Breadcrumb.Item>
+                            <Breadcrumb.Item>User</Breadcrumb.Item>
+                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                        </Breadcrumb>
                     </div>
                     <Footer style={{
                         flexShrink: '0',
