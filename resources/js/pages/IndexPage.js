@@ -96,21 +96,26 @@ const IndexPage = () => (
                 position: 'fixed',
                 left: 0,
             }}>
-                <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%', borderRight: 0 }} >
-                    <Menu.Item key="1">แคตตาล็อกพัสดุ</Menu.Item>
-                    <SubMenu key="sub2" title={
+                <Menu mode="inline" defaultOpenKeys={['stock_categories']} style={{ height: '100%', borderRight: 0 }} >
+                    <SubMenu key="stock_categories" title={
                         <span>
-                            <Icon type="laptop" />
+                            <Icon type="search" />
+                            เรียกดูพัสดุตามหมวดหมู่
+                        </span>
+                    }>
+                    </SubMenu>
+                    <SubMenu key="cpanel" title={
+                        <span>
+                            <Icon type="control" />
                             แผงควบคุม
                         </span>
-                        }
-                    >
-                        <Menu.Item key="5">ผู้ใช้</Menu.Item>
-                        <Menu.Item key="2">พัสดุ</Menu.Item>
-                        <Menu.Item key="3">ประเภทพัสดุ</Menu.Item>
-                        <Menu.Item key="4">สถานที่เก็บพัสดุ</Menu.Item>
-                        <Menu.Item key="4">การยืมและการคืนพัสดุ</Menu.Item>
-                        <Menu.Item key="5">รายงาน</Menu.Item>
+                    }>
+                        <Menu.Item key="cpanel.users"><Icon type="user" />ผู้ใช้</Menu.Item>
+                        <Menu.Item key="cpanel.stocks"><Icon type="container" />พัสดุ</Menu.Item>
+                        <Menu.Item key="cpanel.stock_categories"><Icon type="appstore" />ประเภทพัสดุ</Menu.Item>
+                        <Menu.Item key="cpanel.stock_locations"><Icon type="bank" />สถานที่เก็บพัสดุ</Menu.Item>
+                        <Menu.Item key="cpanel.stock_borrowing_manager"><Icon type="book" />การยืมและการคืนพัสดุ</Menu.Item>
+                        <Menu.Item key="cpanel.reports"><Icon type="file-text" />รายงาน</Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
