@@ -38,6 +38,11 @@ const NavbarSearchBox = styled(Search)`
         }
     }
 `
+
+const TextCenter = styled.div`
+    text-align: center;
+`
+
 const userMenu = (
     <Menu>
       <Menu.Item>
