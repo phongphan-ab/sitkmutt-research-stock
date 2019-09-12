@@ -125,6 +125,13 @@ const IndexPage = () => (
                 
             </div>
             <RightMenuWrapper>
+                <Badge count={5}>
+                    <Icon type="shopping-cart" style={{ fontSize: '24px' }} />
+                </Badge>
+                <Divider type="vertical" />
+                <Badge count={5}>
+                    <Icon type="bell" style={{ fontSize: '24px' }} />
+                </Badge>
                 <Dropdown overlay={userMenu}>
                     <a href="#">
                         <Avatar style={{ color: '#316195', backgroundColor: '#8bb1da' }}>U</Avatar>
