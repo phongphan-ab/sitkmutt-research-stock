@@ -81,16 +81,22 @@ const userMenu = (
 
 const IndexPage = () => (
     <Layout>
-        <Header style={{ display: 'flex', position: 'fixed', zIndex: 1, width: '100%', padding: 0 }}>
+        <Header style={{ 
+            display: 'flex',
+            position: 'fixed',
+            zIndex: 1,
+            width: '100%',
+            padding: 0,
+            justifyContent: 'space-between'
+        }}>
             <div style={{
-                display: 'flex',   
+                display: 'flex',
                 width: '100%'
             }}>
                 <div style={{
                     display: 'flex',
                     width: '100%',
-                    maxWidth: '272px',
-                    marginRight: '16px'
+                    maxWidth: '272px'
                 }}>
                     <Icon className="trigger" type={true ? 'menu-unfold' : 'menu-fold'} onClick={null} style={{
                         width: '64px',
@@ -99,30 +105,30 @@ const IndexPage = () => (
                         justifyContent: 'center',
                         alignItems: 'center',
                         fontSize: '24px',
-                        color: '#ffffff'
+                        color: 'rgba(255, 255, 255, 0.5)'
                     }} />
-                    <div style={{ display: 'flex' }} >
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}>
                         <img src="/images/logo-sit.svg" style={{
                             margin: '16px 0px',
                             height: '32px'
                         }} />
-                        <span style={{ color: '#ffffff', fontSize: '16px' }}>ResearchStock</span>
+                        <span style={{ color: '#ffffff', fontSize: '16px', lineHeight: '1em' }}>Research<br />Stock</span>
                     </div>
                 </div>
                 <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
                     width: '100%',
                     maxWidth: '640px',
-                    marginRight: 'auto'
+                    padding: '0 16px'
                 }}>
                     <NavbarSearchBox placeholder="ค้นหาพัสดุที่นี่" style={{
                         width: '100%',
                         maxWidth: '640px',
                         height: '48px',
                     }} />
-                </div>
-                
+                </div> 
             </div>
             <RightMenuWrapper>
                 <Badge count={5}>
