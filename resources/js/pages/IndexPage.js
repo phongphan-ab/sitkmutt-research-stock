@@ -39,6 +39,22 @@ const NavbarSearchBox = styled(Search)`
     }
 `
 
+const RightMenuWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding-right: 20px;
+    color: rgba(255, 255, 255, 0.5);
+
+    & > * {
+        margin-right: 16px;
+    }
+
+    & > *:last-child {
+        margin-right: 0;
+    }
+`
+
 const TextCenter = styled.div`
     text-align: center;
 `
@@ -108,14 +124,14 @@ const IndexPage = () => (
                 </div>
                 
             </div>
-            <div style={{ paddingRight: '20px' }}>
+            <RightMenuWrapper>
                 <Dropdown overlay={userMenu}>
                     <a href="#">
                         <Avatar style={{ color: '#316195', backgroundColor: '#8bb1da' }}>U</Avatar>
                         <Text style={{ marginLeft: '8px' }}>ชื่อจริง</Text>
                     </a>
                 </Dropdown>
-            </div>
+            </RightMenuWrapper>
         </Header>
         <Layout style={{
             marginTop: '64px'
