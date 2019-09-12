@@ -135,7 +135,7 @@ const IndexPage = () => (
                 <Dropdown overlay={userMenu}>
                     <a href="#">
                         <Avatar style={{ color: '#316195', backgroundColor: '#8bb1da' }}>U</Avatar>
-                        <Text style={{ marginLeft: '8px' }}>ชื่อจริง</Text>
+                        <Text style={{ marginLeft: '8px', color: 'rgba(255, 255, 255, 0.5)' }}>ชื่อจริง</Text>
                     </a>
                 </Dropdown>
             </RightMenuWrapper>
