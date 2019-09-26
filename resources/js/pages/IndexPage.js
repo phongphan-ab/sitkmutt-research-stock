@@ -1,6 +1,8 @@
 import React from 'react'
 import { Layout, Menu, Input, Icon, Breadcrumb, Typography, Avatar, Dropdown, Badge, Divider } from 'antd'
 import styled from 'styled-components'
+import 'matchmedia-polyfill/matchMedia'
+import 'matchmedia-polyfill/matchMedia.addListener'
 
 const { Header, Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
