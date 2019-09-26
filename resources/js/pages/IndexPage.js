@@ -9,7 +9,6 @@ import { SiderMenu, DrawerMenu, NavbarSearchBox } from '~/components'
 import { antdDrawerMenuToggle, antdSiderMenuToggle } from '~/scripts/redux/actions'
 
 const { Header, Sider, Content, Footer } = Layout
-const { SubMenu } = Menu
 const { Text } = Typography
 
 const RightMenuWrapper = styled.div`
