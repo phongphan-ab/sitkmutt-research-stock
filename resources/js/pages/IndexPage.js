@@ -1,8 +1,11 @@
 import React from 'react'
 import { Layout, Menu, Input, Icon, Breadcrumb, Typography, Avatar, Dropdown, Badge, Divider } from 'antd'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import 'matchmedia-polyfill/matchMedia'
 import 'matchmedia-polyfill/matchMedia.addListener'
+
+import { antdDrawerMenuToggle, antdSiderMenuToggle } from '~/scripts/redux/actions'
 
 const { Header, Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
@@ -48,7 +51,7 @@ const userMenu = (
     </Menu>
 );
 
-const IndexPage = () => (
+const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
     <Layout>
         <Header style={{ 
             display: 'flex',
@@ -67,15 +70,23 @@ const IndexPage = () => (
                     width: '100%',
                     maxWidth: '272px'
                 }}>
-                    <Icon className="trigger" type={true ? 'menu-unfold' : 'menu-fold'} onClick={null} style={{
-                        width: '64px',
-                        height: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontSize: '24px',
-                        color: 'rgba(255, 255, 255, 0.5)'
-                    }} />
+                    <Icon className="trigger" type="menu" onClick={() => {
+                        dispatch(
+                            matchMedia('all and (min-width: 992px)').matches
+                                ? antdSiderMenuToggle()
+                                : antdDrawerMenuToggle(true) )
+                            }
+                        }
+                        style={{
+                            width: '64px',
+                            height: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontSize: '24px',
+                            color: 'rgba(255, 255, 255, 0.5)'
+                        }
+                    } />
                     <div style={{
                         display: 'flex',
                         alignItems: 'center'
@@ -182,5 +193,12 @@ const IndexPage = () => (
         </Layout>
     </Layout>
 )
+
+const mapStateToProps = state => ({
+    isSiderMenuOpen: state.antdSiderMenu,
+    isDrawerMenuOpen: state.antdDrawerMenu
+})
+
+const IndexPage = connect(mapStateToProps)(IndexPageWithRedux)
 
 export default IndexPage
