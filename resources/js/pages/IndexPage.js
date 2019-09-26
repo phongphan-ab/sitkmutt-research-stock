@@ -169,7 +169,7 @@ const IndexPage = () => (
                     </div>
                     <Footer style={{
                         flexShrink: '0',
-                        padding: 0
+                        padding: '16px'
                     }}>
                         <TextCenter>
                             <Text disabled style={{ cursor: 'auto' }}>สงวนลิขสิทธิ์ พ.ศ. 2562 คณะเทคโนโลยีสารสนเทศ มจธ. ขอสงวนสิทธิ์ทุกประการ</Text>
