@@ -27,6 +27,39 @@ const RightMenuWrapper = styled.div`
     }
 `
 
+const notificationData = [
+    {
+      title: 'Ant Design Title 1',
+    },
+    {
+      title: 'Ant Design Title 2',
+    },
+    {
+      title: 'Ant Design Title 3',
+    },
+    {
+      title: 'Ant Design Title 4',
+    },
+];
+
+const breadcrumbData = [];
+
+const notificationList = (
+    <List
+        itemLayout="horizontal"
+        dataSource={notificationData}
+        renderItem={item => (
+            <List.Item>
+                <List.Item.Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title={<a href="https://ant.design">{item.title}</a>}
+                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                />
+            </List.Item>
+        )}
+    />
+);
+
 const TextCenter = styled.div`
     text-align: center;
 `
@@ -115,9 +148,11 @@ const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen,
                     <Icon type="shopping-cart" style={{ fontSize: '24px' }} />
                 </Badge>
                 <Divider type="vertical" />
-                <Badge count={5}>
-                    <Icon type="bell" style={{ fontSize: '24px' }} />
-                </Badge>
+                <Popover placement="bottomRight" content={notificationList} title="การแจ้งเตือน" arrowPointAtCenter>
+                    <Badge count={5}>
+                        <Icon type="bell" style={{ fontSize: '24px' }} />
+                    </Badge>
+                </Popover>
                 <Dropdown overlay={userMenu}>
                     <a href="#">
                         <Avatar style={{ color: '#316195', backgroundColor: '#8bb1da' }}>U</Avatar>
