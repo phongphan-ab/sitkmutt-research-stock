@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import 'matchmedia-polyfill/matchMedia'
 import 'matchmedia-polyfill/matchMedia.addListener'
 
+import { SiderMenu, DrawerMenu, NavbarSearchBox } from '~/components'
 import { antdDrawerMenuToggle, antdSiderMenuToggle } from '~/scripts/redux/actions'
 
 const { Header, Sider, Content, Footer } = Layout
@@ -161,41 +162,28 @@ const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen,
                 </Dropdown>
             </RightMenuWrapper>
         </Header>
+        <DrawerMenu />
         <Layout style={{
             marginTop: '64px'
         }}>
-            <Sider width={272} trigger={null} collapsible collapsed={false} style={{
+            <Sider width={272} collapsedWidth={0} collapsed={isSiderMenuOpen} style={{
                 background: '#fff',
                 overflowX: 'hidden',
                 overflowY: 'auto',
                 height: 'calc(100vh - 64px)',
-                position: 'fixed',
                 left: 0,
+                boxShadow: '1px 0 16px rgba(0, 0, 0, .10)'
+            }}
+            breakpoint="lg"
+            onBreakpoint={broken => {
+                dispatch(antdSiderMenuToggle(broken))
+                if (!broken && isDrawerMenuOpen) {
+                    dispatch(antdDrawerMenuToggle(false))
+                }
             }}>
-                <Menu mode="inline" defaultOpenKeys={['stock_categories']} style={{ height: '100%', borderRight: 0 }} >
-                    <SubMenu key="stock_categories" title={
-                        <span>
-                            <Icon type="search" />
-                            เรียกดูพัสดุตามหมวดหมู่
-                        </span>
-                    }>
-                    </SubMenu>
-                    <SubMenu key="cpanel" title={
-                        <span>
-                            <Icon type="control" />
-                            แผงควบคุม
-                        </span>
-                    }>
-                        <Menu.Item key="cpanel.users"><Icon type="user" />ผู้ใช้</Menu.Item>
-                        <Menu.Item key="cpanel.stocks"><Icon type="container" />พัสดุ</Menu.Item>
-                        <Menu.Item key="cpanel.stock_categories"><Icon type="appstore" />ประเภทพัสดุ</Menu.Item>
-                        <Menu.Item key="cpanel.stock_locations"><Icon type="bank" />สถานที่เก็บพัสดุ</Menu.Item>
-                        <Menu.Item key="cpanel.stock_borrowing_manager"><Icon type="book" />การยืมและการคืนพัสดุ</Menu.Item>
-                        <Menu.Item key="cpanel.reports"><Icon type="file-text" />รายงาน</Menu.Item>
-                    </SubMenu>
-                </Menu>
+                <SiderMenu />
             </Sider>
-            <Layout style={{ marginLeft: 272 }}>
+            <Layout>
                 <Content style={{
                     margin: '16px',
                     overflow: 'initial',
