@@ -193,13 +193,13 @@ const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen,
                     <div style={{
                         flex: '1 0 auto'
                     }}>
-                        <Breadcrumb style={{ margin: '0 0 16px 0' }}>
-                            <Breadcrumb.Item href="/"><Icon type="home" /></Breadcrumb.Item>
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <div style={{ padding: 24, background: '#fff' }}>
-                            Bill is a cat.
+                        <div style={{ background: '#fff' }}>
+                            <PageHeader title={title} breadcrumb={{breadcrumbData}} style={{
+                                padding: '16px'
+                            }}/>
+                        </div>
+                        <div style={{ padding: '16px', margin: '16px', background: '#fff' }}>
+                            {children}
                         </div>
                     </div>
                     <Footer style={{
