@@ -184,7 +184,6 @@ const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen,
             </Sider>
             <Layout>
                 <Content style={{
-                    margin: '16px',
                     overflow: 'initial',
                     height: '100%',
                     display: 'flex',
