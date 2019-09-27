@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Drawer } from 'antd'
+import styled from 'styled-components'
 
 import { antdDrawerMenuToggle } from '~/scripts/redux/actions'
 import { SiderMenu } from './'
@@ -9,10 +10,16 @@ const onClose = () => {
     return antdDrawerMenuToggle()
 }
 
+const StyledDrawer = styled(Drawer)`
+    & .ant-drawer-body {
+        padding: 0;
+    }
+`
+
 const DrawerMenuWithRedux = ({siderCollapsed, dispatch}) => (
-    <Drawer title="เมนู" placement="left" visible={siderCollapsed} closable={true} onClose={()=> dispatch(onClose())}>
+    <StyledDrawer title="เมนู" placement="left" visible={siderCollapsed} closable={true} onClose={()=> dispatch(onClose())}>
         <SiderMenu />
-    </Drawer>
+    </StyledDrawer>
 )
 
 const mapStateToProps = state => ({
