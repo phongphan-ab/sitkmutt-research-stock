@@ -192,11 +192,17 @@ const DefaultLayoutWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuO
                     <div style={{
                         flex: '1 0 auto'
                     }}>
-                        <div style={{ background: '#fff' }}>
-                            <PageHeader title={title} breadcrumb={{breadcrumbData}} style={{
-                                padding: '16px'
-                            }}/>
-                        </div>
+                        {
+                            title || breadcrumbData.length > 0
+                            ? (
+                                <div style={{ background: '#fff' }}>
+                                    <PageHeader title={title} breadcrumb={{breadcrumbData}} style={{
+                                        padding: '16px'
+                                    }}/>
+                                </div>
+                            )
+                            : null
+                        }
                         { children
                             ? (
                                 <div style={{ padding: '16px', margin: '16px', background: '#fff' }}>
