@@ -84,7 +84,7 @@ const userMenu = (
     </Menu>
 );
 
-const IndexPageWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
+const DefaultLayoutWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
     <Layout>
         <Header style={{ 
             display: 'flex',
@@ -220,6 +220,6 @@ const mapStateToProps = state => ({
     isDrawerMenuOpen: state.antdDrawerMenu
 })
 
-const IndexPage = connect(mapStateToProps)(IndexPageWithRedux)
+const DefaultLayout = connect(mapStateToProps)(DefaultLayoutWithRedux)
 
-export default IndexPage
+export default DefaultLayout
