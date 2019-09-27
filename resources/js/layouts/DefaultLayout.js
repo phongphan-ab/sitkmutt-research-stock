@@ -197,9 +197,14 @@ const DefaultLayoutWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuO
                                 padding: '16px'
                             }}/>
                         </div>
-                        <div style={{ padding: '16px', margin: '16px', background: '#fff' }}>
-                            {children}
-                        </div>
+                        { children
+                            ? (
+                                <div style={{ padding: '16px', margin: '16px', background: '#fff' }}>
+                                    {children}
+                                </div>
+                            )
+                            : null
+                        }
                     </div>
                     <Footer style={{
                         flexShrink: '0',
