@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 
 import './bootstrap'
-import { IndexPage } from './pages'
+import { IndexPage, LoginPage } from './pages'
 import { store } from './scripts/redux';
 
 const GlobalStyle = createGlobalStyle`
@@ -23,6 +23,7 @@ const App = () => (
         <GlobalStyle />
         <Router>
             <Route exact path="/" component={IndexPage} />
+            <Route exect path="/login" component={LoginPage} />
         </Router>
     </Provider>
 )
