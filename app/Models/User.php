@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Adldap;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -14,10 +14,10 @@ use App\Traits\HasUuid;
 
 class User extends Authenticatable
 {
-    use Notifiable;
     use HasApiTokens;
     use HasRoles;
     use HasUuid;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
