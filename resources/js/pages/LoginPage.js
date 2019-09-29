@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Button, Card, Form, Input, Layout, Spin, Typography } from 'antd'
 import styled from 'styled-components'
+import { frmLoginLoading } from '~/scripts/redux/actions'
 
 const { Content } = Layout
 const { Text } = Typography
@@ -26,13 +28,14 @@ const LandingLayoutWrapper = styled.div`
     }
 `
 
-const LoginPageWrapper = ({ form }) => {
+const LoginPageWrapper = ({ form, isSpinSpining, dispatch }) => {
     const { getFieldDecorator } = form
     let loadingSpinned = false
 
-    const frmLoginSubmitHandler = e => {
+    const frmLoginSubmitHandler = (e, dispatch) => {
         e.preventDefault();
         form.validateFields((err, values) => {
+            dispatch(frmLoginLoading(true))
             if (!err) {
                 
             }
@@ -59,8 +62,8 @@ const LoginPageWrapper = ({ form }) => {
                             width: '100%',
                             maxWidth: '360px'
                         }}>
-                            <Spin tip="กำลังโหลด&hellip;" spinning={loadingSpinned}>
-                                <Form layout="vertical" onSubmit={frmLoginSubmitHandler}>
+                            <Spin tip="กำลังโหลด&hellip;" spinning={isSpinSpining}>
+                                <Form layout="vertical" onSubmit={(e) => frmLoginSubmitHandler(e, dispatch)}>
                                     <Form.Item label="ชื่อผู้ใช้">
                                         {
                                             getFieldDecorator('username', {
@@ -103,7 +106,12 @@ const LoginPageWrapper = ({ form }) => {
             </Layout>
     );
 }
-    
-const LoginPage = Form.create({ name: 'login' })(LoginPageWrapper);
+const LoginPageReduxWrapper = Form.create({ name: 'login' })(LoginPageWrapper);
+
+const mapStateToProps = state => ({
+    isSpinSpining: state.frmLoginLoading
+})
+
+const LoginPage = connect(mapStateToProps)(LoginPageReduxWrapper)
 
 export default LoginPage
