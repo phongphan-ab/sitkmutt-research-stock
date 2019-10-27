@@ -4,5 +4,8 @@
         "paths": {
             "~/*": ["./resources/js/*"]
         }
-    }
+    },
+    "include": [
+        "resources/js"
+    ]
 }
