@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaterialTables extends Migration
+class CreateStockTables extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateMaterialTables extends Migration
     {
         DB::beginTransaction();
 
-        Schema::create('material_categories', function (Blueprint $table) {
+        Schema::create('stock_categories', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
             $table->string('title');
@@ -27,7 +27,7 @@ class CreateMaterialTables extends Migration
             );
         });
 
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
             $table->unsignedInteger('category_id')->nullable();
@@ -40,26 +40,26 @@ class CreateMaterialTables extends Migration
             );
             $table->softDeletes();
 
-            $table->foreign('category_id')->references('id')->on('material_categories')
+            $table->foreign('category_id')->references('id')->on('stock_categories')
                 ->onUpdate('cascade')->onDelete('set null');
         });
 
 
-        Schema::create('material_pictures', function (Blueprint $table) {
+        Schema::create('stock_pictures', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('stock_id');
             $table->text('path');
             $table->unsignedTinyInteger('order')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
             );
-            $table->foreign('material_id')->references('id')->on('materials')
+            $table->foreign('stock_id')->references('id')->on('stocks')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('material_locations', function (Blueprint $table) {
+        Schema::create('stock_locations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('object_id')->unique();
             $table->string('title');
@@ -70,7 +70,7 @@ class CreateMaterialTables extends Migration
             );
         });
 
-        Schema::create('material_location_user', function (Blueprint $table) {
+        Schema::create('stock_location_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('object_id')->unique();
             $table->unsignedBigInteger('user_id');
@@ -83,14 +83,14 @@ class CreateMaterialTables extends Migration
             $table->unique(['user_id', 'location_id']);
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('material_locations')
+            $table->foreign('location_id')->references('id')->on('stock_locations')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('material_sku', function (Blueprint $table) {
+        Schema::create('stock_sku', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('stock_id');
             $table->unsignedBigInteger('location_id');
             $table->string('code')->nullable();
             $table->string('serial_no')->nullable()->unique();
@@ -106,17 +106,17 @@ class CreateMaterialTables extends Migration
             );
             $table->softDeletes();
 
-            $table->foreign('material_id')->references('id')->on('materials')
+            $table->foreign('stock_id')->references('id')->on('stocks')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('material_locations')
+            $table->foreign('location_id')->references('id')->on('stock_locations')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('material_cart', function (Blueprint $table) {
+        Schema::create('stock_cart', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('stock_id');
             $table->unsignedInteger('amount')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
@@ -125,7 +125,7 @@ class CreateMaterialTables extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('material_id')->references('id')->on('materials')
+            $table->foreign('stock_id')->references('id')->on('stocks')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -139,12 +139,12 @@ class CreateMaterialTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('material_cart');
-        Schema::dropIfExists('material_sku');
-        Schema::dropIfExists('material_location_user');
-        Schema::dropIfExists('material_locations');
-        Schema::dropIfExists('material_pictures');
-        Schema::dropIfExists('materials');
-        Schema::dropIfExists('material_categories');
+        Schema::dropIfExists('stock_cart');
+        Schema::dropIfExists('stock_sku');
+        Schema::dropIfExists('stock_location_user');
+        Schema::dropIfExists('stock_locations');
+        Schema::dropIfExists('stock_pictures');
+        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('stock_categories');
     }
 }

@@ -34,11 +34,11 @@ class CreateBorrowTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('borrow_material', function (Blueprint $table) {
+        Schema::create('borrow_stock', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
             $table->unsignedBigInteger('borrow_id');
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('stock_id');
             $table->unsignedInteger('amount')->default(1);
             $table->boolean('is_allowed')->nullable();
             $table->timestamp('created_at')->useCurrent();
@@ -48,24 +48,24 @@ class CreateBorrowTables extends Migration
                 
             $table->foreign('borrow_id')->references('id')->on('borrows')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('material_id')->references('id')->on('materials')
+            $table->foreign('stock_id')->references('id')->on('stocks')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('borrow_material_sku', function (Blueprint $table) {
+        Schema::create('borrow_stock_sku', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->uuid('object_id')->unique();
-            $table->unsignedBigInteger('borrow_material_id');
-            $table->unsignedBigInteger('material_sku_id');
+            $table->unsignedBigInteger('borrow_stock_id');
+            $table->unsignedBigInteger('stock_sku_id');
             $table->datetime('returned_at')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
             );
             
-            $table->foreign('borrow_material_id')->references('id')->on('borrow_material')
+            $table->foreign('borrow_stock_id')->references('id')->on('borrow_stock')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('material_sku_id')->references('id')->on('material_sku')
+            $table->foreign('stock_sku_id')->references('id')->on('stock_sku')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -79,8 +79,8 @@ class CreateBorrowTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('borrow_material_sku');
-        Schema::dropIfExists('borrow_material');
+        Schema::dropIfExists('borrow_stock_sku');
+        Schema::dropIfExists('borrow_stock');
         Schema::dropIfExists('borrows');
     }
 }
