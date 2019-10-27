@@ -10,10 +10,7 @@ class StockCategoriesPageContainer extends Component {
 
 const mapStateToProps = state => ({
     isStockCategoryAddingModalOpen: state.cpanelStockCategoryAddingModal,
-    stockCategories: state.stockCategories.data,
-    stockCategoriesLoading: state.stockCategories.loading,
-    stockCategoriesFailure: state.stockCategories.error,
-    stockCategoryModifyItem: state.stockCategoriesModifyItem
+    stockCategories: state.stockCategories
 })
 
 const StockCategoriesPage = connect(mapStateToProps)(StockCategoriesPageContainer)
