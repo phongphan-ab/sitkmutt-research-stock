@@ -94,6 +94,7 @@ class StockCategoriesController extends Controller
      */
     public function destroy(StockCategory $stockCategory)
     {
-        //
+        $stockCategory->delete();
+        return response(null);
     }
 }
