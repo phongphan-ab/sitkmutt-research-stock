@@ -23,7 +23,7 @@ const SiderMenu = () => (
             <Menu.Item key="cpanel.stocks"><Icon type="container" /><span>พัสดุ</span></Menu.Item>
             <Menu.Item key="cpanel.stock_categories"><Link to="/cpanel/stock_categories"><Icon type="appstore" /><span>ประเภทพัสดุ</span></Link></Menu.Item>
             <Menu.Item key="cpanel.stock_locations"><Icon type="bank" /><span>สถานที่เก็บพัสดุ</span></Menu.Item>
-            <Menu.Item key="cpanel.stock_borrowing_manager"><Icon type="book" /><span>การยืมและการคืนพัสดุ</span></Menu.Item>
+            <Menu.Item key="cpanel.requests"><Icon type="book" /><span>การยืมและการคืนพัสดุ</span></Menu.Item>
             <Menu.Item key="cpanel.reports"><Icon type="file-text" /><span>รายงาน</span></Menu.Item>
         </SubMenu>
     </Menu>
