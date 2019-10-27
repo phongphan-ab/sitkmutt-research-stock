@@ -190,7 +190,9 @@ const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen
                     flexDirection: 'column'
                 }}>
                     <div style={{
-                        flex: '1 0 auto'
+                        flex: '1 0 auto',
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}>
                         {
                             title || operationBtn || breadcrumbData.length > 0
@@ -208,7 +210,12 @@ const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen
                         }
                         { children
                             ? (
-                                <div style={{ padding: '16px', margin: '16px', background: '#fff' }}>
+                                <div style={{
+                                    flex: '1 0 auto',
+                                    padding: '16px',
+                                    margin: '16px',
+                                    background: '#fff'
+                                }}>
                                     {children}
                                 </div>
                             )
