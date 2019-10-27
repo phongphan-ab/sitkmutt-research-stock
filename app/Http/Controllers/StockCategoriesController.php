@@ -16,7 +16,7 @@ class StockCategoriesController extends Controller
      */
     public function index()
     {
-        //
+        return StockCategory::all();
     }
 
     /**
