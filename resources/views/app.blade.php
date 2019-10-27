@@ -14,7 +14,7 @@
                 <p>To continue using this application, please enable JavaScript for this domain name at your web browser setting.</p>
                 <p>For more information, please visit <a href="https://enable-javascript.com/" target="_blank">this page</a> to learn how to enable JavaScript on your browser.</p>
                 <hr />
-                <em>&copy; {{ Carbon::now()->year }} School of Information Techonlogy. All right reserved.</em>
+                <em>&copy; {{ Carbon::now()->year }} School of Information Techonlogy, KMUTT. All right reserved.</em>
             </div>
         </noscript>
         <div id="app"></div>
