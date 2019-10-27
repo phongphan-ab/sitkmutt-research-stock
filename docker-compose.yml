@@ -79,10 +79,10 @@ services:
 
 networks:
     network:
-        name: th.ac.kmutt.sit.researchstock.networks.network
+        name: sitkmutt_research_stock-networks-network
 
 volumes:
     database:
-        name: th.ac.kmutt.sit.researchstock.volumes.database
+        name: sitkmutt_research_stock-volumes-database
     storage:
-        name: th.ac.kmutt.sit.researchstock.volumes.storage
+        name: sitkmutt_research_stock-volumes-storage
