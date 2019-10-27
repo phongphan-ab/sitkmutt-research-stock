@@ -37,7 +37,19 @@ class StockCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validationRule = [
+            'title' => 'required'
+        ];
+        $validator = Validator::make($data, $validationRule);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $stockCategory = StockCategory::create($data);
+
+        return StockCategory::find($stockCategory->object_id);
     }
 
     /**
