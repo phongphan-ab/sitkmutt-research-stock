@@ -1,11 +1,11 @@
-import SiderMenu from './SiderMenu'
 import DrawerMenu from './DrawerMenu'
 import ErrorModal from './ErrorModal'
 import NavbarSearchBox from './NavbarSearchBox'
+import SiderMenu from './SiderMenu'
 
 export {
-    SiderMenu,
     DrawerMenu,
-    NavbarSearchBox
     ErrorModal,
+    NavbarSearchBox,
+    SiderMenu
 }
