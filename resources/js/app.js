@@ -8,6 +8,8 @@ import './bootstrap'
 import { IndexPage, LoginPage } from './pages'
 import { store } from './scripts/redux';
 
+window.axios.defaults.baseURL = '/api/'
+
 const GlobalStyle = createGlobalStyle`
     #app {
         min-height: 100vh;
