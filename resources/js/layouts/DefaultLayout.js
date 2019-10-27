@@ -84,7 +84,7 @@ const userMenu = (
     </Menu>
 );
 
-const DefaultLayoutWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
+const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
     <Layout>
         <Header style={{ 
             display: 'flex',
@@ -193,12 +193,15 @@ const DefaultLayoutWithRedux = ({title, children, isDrawerMenuOpen, isSiderMenuO
                         flex: '1 0 auto'
                     }}>
                         {
-                            title || breadcrumbData.length > 0
+                            title || operationBtn || breadcrumbData.length > 0
                             ? (
                                 <div style={{ background: '#fff' }}>
-                                    <PageHeader title={title} breadcrumb={{breadcrumbData}} style={{
-                                        padding: '16px'
-                                    }}/>
+                                    <PageHeader title={title} breadcrumb={{breadcrumbData}}
+                                        style={{
+                                            padding: '16px'
+                                        }}
+                                        extra={operationBtn}
+                                    />
                                 </div>
                             )
                             : null
