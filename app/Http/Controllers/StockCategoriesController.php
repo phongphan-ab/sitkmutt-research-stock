@@ -60,7 +60,7 @@ class StockCategoriesController extends Controller
      */
     public function show(StockCategory $stockCategory)
     {
-        //
+        return $stockCategory;
     }
 
     /**
