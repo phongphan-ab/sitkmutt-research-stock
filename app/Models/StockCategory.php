@@ -25,6 +25,10 @@ class StockCategory extends Model
         'id'
     ];
 
+    protected $casts = [
+        'is_visible' => 'boolean',
+    ];
+
 
     public function stocks() {
         return $this->hasMany(Stock::class);
