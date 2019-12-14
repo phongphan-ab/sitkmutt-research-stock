@@ -60,7 +60,7 @@ class StockCategoriesController extends Controller
      */
     public function show(StockCategory $stockCategory)
     {
-        //
+        return $stockCategory;
     }
 
     /**
@@ -83,7 +83,18 @@ class StockCategoriesController extends Controller
      */
     public function update(Request $request, StockCategory $stockCategory)
     {
-        //
+        $data = $request->all();
+
+        $validationRule = [
+            'title' => 'required'
+        ];
+        $validator = Validator::make($data, $validationRule);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $stockCategory->update($data);
+        return response($stockCategory);
     }
 
     /**

@@ -17,11 +17,16 @@ class StockCategory extends Model
     
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'is_visible'
     ];
 
     protected $hidden = [
         'id'
+    ];
+
+    protected $casts = [
+        'is_visible' => 'boolean',
     ];
 
 

@@ -19,7 +19,7 @@ class DeleteStockCategoryButtonContainer extends Component {
             object_id,
             deleteStockCategory
         } = this.props
-        deleteStockCategory(object_id)
+        deleteStockCategory({object_id: object_id})
     }
 
     deleteConfirmationHandler = (e) => {
@@ -60,21 +60,20 @@ class DeleteStockCategoryButtonContainer extends Component {
                 icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
                 title={<>พัสดุที่อยู่ในหมวดหมู่นี้จะถูกเปลี่ยนไปอยู่ในหมวด &quot;อื่น ๆ&quot;<br />คุณแน่ใจหรือไม่ที่จะลบหมวดหมู่นี้ ?</>}
             >
-                <Button type="danger" ghost data-object_id={object_id} loading={this.state.isStockCategoryDeleting} onClick={this.onDeleteHandler}>
-                    <Icon type="delete" />
-                </Button>
+                <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockCategoryDeleting} onClick={this.onDeleteHandler} />
             </Popconfirm>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    stockCategories: state.stockCategories
+    stockCategories: state.stockCategories,
+    
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteStockCategory: (object_id) => dispatch(deleteStockCategoryItem(object_id)),
-    putStockCategoryDataToState: (data) => dispatch(fetchStockCategoriesSuccess(data))
+    deleteStockCategory: (data) => dispatch(deleteStockCategoryItem(data)),
+    putStockCategoryDataToState: (data) => dispatch(fetchStockCategoriesSuccess(data)),
 })
 
 const DeleteStockCategoryButton = connect(mapStateToProps, mapDispatchToProps)(DeleteStockCategoryButtonContainer)

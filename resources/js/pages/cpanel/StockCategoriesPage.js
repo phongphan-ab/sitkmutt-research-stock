@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Button, Empty, Icon, List, Result, Spin, Tooltip } from 'antd'
 import { connect }  from 'react-redux'
 
-import { DeleteStockCategoryButton, StockCategoryFormModal } from '~/components'
+import { DeleteStockCategoryButton, EditStockCategoryButton, StockCategoryFormModal } from '~/components'
 import DefaultLayout from '~/layouts'
-import { fetchStockCategories, openStockCategoryAddingModal } from '~/scripts/redux/actions'
+import { fetchStockCategories, openStockCategoryModalForm } from '~/scripts/redux/actions'
 
 class StockCategoriesPageContainer extends Component {   
 
@@ -23,12 +23,12 @@ class StockCategoriesPageContainer extends Component {
                         item => (
                             <List.Item key={item.object_id}
                                 actions={[
-                                    <Button><Icon type="edit" /> แก้ไข</Button>,
+                                    <EditStockCategoryButton object_id={item.object_id} />,
                                     <DeleteStockCategoryButton object_id={item.object_id} />
                                 ]}
                             >
                                 <List.Item.Meta
-                                    title={`${item.title}${!item.is_visible ? (<Tooltip title="ถูกซ่อนไว้">&nbps;<Icon type="disconnect" /></Tooltip>) : ''}`}
+                                    title={<>{item.title}{!item.is_visible ? (<Tooltip title="ถูกซ่อนไว้">&nbsp;<Icon type="disconnect" /></Tooltip>) : ''}</>}
                                     description={item.description}
                                 />
                             </List.Item>
@@ -58,7 +58,7 @@ class StockCategoriesPageContainer extends Component {
         return (
             <DefaultLayout title="ประเภทพัสดุ"
                 operationBtn={
-                    <Button type="primary" onClick={() => dispatch(openStockCategoryAddingModal(true))}>เพิ่ม</Button>
+                    <Button type="primary" onClick={() => dispatch(openStockCategoryModalForm(true))}>เพิ่ม</Button>
                 }
             >
                 <Spin tip="กำลังโหลด..." spinning={stockCategories.loading}>
