@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Modal, Input, message, Switch } from 'antd'
-import { fetchStockCategoriesSuccess, openStockCategoryAddingModal } from '~/scripts/redux/actions'
-import axios from 'axios'
+import { cancelStockCategoryItemEditing, fetchStockCategoriesSuccess, openStockCategoryModalForm } from '~/scripts/redux/actions'
+import Axios from 'axios'
 
 import { ErrorModal } from '~/components'
 
@@ -17,38 +17,56 @@ class StockCategoryFormModalContainer extends Component {
     }
 
     onOkHandler = e => {
-        const { form, stockCategories, putStockCategoriesData, openStockCategoryModalForm } = this.props
-
+        const { form, stockCategories, putStockCategoriesData, openStockCategoryModalForm, stockCategoriesModifyItem } = this.props
         e.preventDefault()
         form.validateFields(async (err, values) => {
+            console.log(values)
             if (!err) {
                 this.setState({okBtnLoading: true})
-                await axios.post('/stock_categories', values)
+
+                let { editMode, data} = stockCategoriesModifyItem
+                let url = editMode ? `/stock_categories/${data.object_id}` :   '/stock_categories'
+                await Axios({
+                    method: editMode ? 'put' : 'post',
+                    url: url,
+                    data: values
+                })
                     .then(response => {
                         let list = stockCategories.data
-                        list.push(response.data)
+                        
+                        if (editMode) {
+                            let index = list.findIndex(item => item.object_id == data.object_id)
+                            values.object_id = data.object_id
+                            list[index] = values
+                            message.success('แก้ไขหมวดหมู่พัสดุแล้ว')
+                        }
+                        else {
+                            list.push(response.data)
+                            message.success('เพิ่มหมวดหมู่พัสดุแล้ว')
+                        }
+
                         putStockCategoriesData(list)
                         openStockCategoryModalForm(false)
                         form.resetFields()
-                        message.success('เพิ่มหมวดหมู่พัสดุแล้ว')
                     })
                     .catch((error) => {(
                         ErrorModal(error)
                     )})
             }
-
             this.setState({okBtnLoading: false})
         });
     }
 
-    onCancelHandler = async () => {
-        const { openStockCategoryModalForm } = this.props
+    onCancelHandler = () => {
+        const { form, openStockCategoryModalForm, cancelStockCategoryEditing } = this.props
         openStockCategoryModalForm(false)
         form.resetFields()
+        cancelStockCategoryEditing()
     }
 
     render() {
-        const { visible, editMode, form } = this.props
+        const { visible, form, stockCategoriesModifyItem } = this.props
+        let { editMode, data } = stockCategoriesModifyItem
         const { getFieldDecorator } = form
 
         const formItemLayout = {
@@ -63,37 +81,43 @@ class StockCategoryFormModalContainer extends Component {
         };
 
         return (
-            <Form {...formItemLayout}>
             <Modal title="เพิ่มประเภทพัสดุ" okText="เพิ่ม" cancelText="ยกเลิก"
                 visible={visible}
                 onOk={this.onOkHandler}
                 onCancel={this.onCancelHandler}
                 confirmLoading={this.state.okBtnLoading}
             >
-                <Form.Item label="ชื่อประเภท">
-                    {getFieldDecorator('title', {
-                        rules: [
-                            {
-                                required: true,
-                                message: 'โปรดป้อนชื่อประเภทพัสดุ',
-                            },
-                        ],
-                    })(<Input />)}
-                </Form.Item>
-                <Form.Item label="คำอธิบาย">
-                    {getFieldDecorator('description')(<TextArea row={3} />)}
-                </Form.Item>
-                {
-                    editMode
-                    ? (
-                        <Form.Item label="แสดงเป็นสาธารณะ">
-                            {getFieldDecorator('is_visible', {valuePropName: 'checked', initialValue: true })(<Switch />)}
-                        </Form.Item>
-                    )
-                    : null
-                }
+                <Form {...formItemLayout}>
+                    <Form.Item label="ชื่อประเภท">
+                        {getFieldDecorator('title', {
+                            initialValue: editMode ? data.title : '',
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'โปรดป้อนชื่อประเภทพัสดุ',
+                                },
+                            ],
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item label="คำอธิบาย">
+                        {getFieldDecorator('description', {
+                            initialValue: editMode ? data.description : '',
+                        })(<TextArea row={3} />)}
+                    </Form.Item>
+                    {
+                        stockCategoriesModifyItem.editMode
+                        ? (
+                            <Form.Item label="แสดงเป็นสาธารณะ">
+                                {getFieldDecorator('is_visible', {
+                                    initialValue: data.is_visible,
+                                    valuePropName: 'checked'
+                                })(<Switch />)}
+                            </Form.Item>
+                        )
+                        : null
+                    }
+                </Form>
             </Modal>
-        </Form>
         )
     } 
 }
@@ -102,12 +126,14 @@ const StockCategoryFormModalFormWrappper = Form.create({name: 'frm-stock_categor
 
 const mapStateToProps = state => ({
     isStockCategoryAddingModalConfirmLoading: state.cpanelStockCategoryModalConfirmLoading,
-    stockCategories: state.stockCategories
+    stockCategories: state.stockCategories,
+    stockCategoriesModifyItem: state.stockCategoriesModifyItem
 })
 
 const mapDispatchToProps = dispatch => ({
-    openStockCategoryModalForm: isOpen => dispatch(openStockCategoryAddingModal(isOpen)),
+    openStockCategoryModalForm: isOpen => dispatch(openStockCategoryModalForm(isOpen)),
     putStockCategoriesData: data => dispatch(fetchStockCategoriesSuccess(data)),
+    cancelStockCategoryEditing: () => dispatch(cancelStockCategoryItemEditing())
 })
 
 const StockCategoryFormModal = connect(mapStateToProps, mapDispatchToProps)(StockCategoryFormModalFormWrappper)
