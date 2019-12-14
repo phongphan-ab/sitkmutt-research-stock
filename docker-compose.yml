@@ -28,6 +28,7 @@ services:
             - ./docker/interpreter/php/php.ini:/usr/local/etc/php/conf.d/php_custom.ini
         networks:
             - network
+        restart: always
     database:
         container_name: ${DOCKER_DATABASE_CONTAINER_NAME}
         image: mariadb:10.4
@@ -73,9 +74,9 @@ services:
             - network
         ports:
             - ${DOCKER_STORAGE_CONTAINER_PORT}:9000
-        restart: always
         volumes:
         - storage:/export
+        restart: always
 
 networks:
     network:
