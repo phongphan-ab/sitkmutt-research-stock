@@ -1,5 +1,6 @@
 import { antdDrawerMenuToggle } from './antdDrawerMenuAction'
 import { antdSiderMenuToggle } from './antdSiderMenuAction'
+import { openCpanelStocksFormModal } from './cpanelStocksFormModalAction'
 import { openStockCategoryModalForm } from './cpanelStockCategoryAddingAction'
 import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockCategoriesAction'
 import { frmLoginLoading } from './frmLoginLoadingAction'
@@ -14,5 +15,6 @@ export {
     frmLoginLoading,
     fetchStockCategories,
     fetchStockCategoriesSuccess,
+    openCpanelStocksFormModal,
     openStockCategoryModalForm,
 }
