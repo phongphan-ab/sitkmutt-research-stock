@@ -16,7 +16,7 @@ class StockCategoriesPageContainer extends Component {
         const { stockCategories, isStockCategoryAddingModalOpen, dispatch } = this.props
 
         let content
-        if (stockCategories.data && !stockCategories.error) {
+        if (stockCategories.data && stockCategories.data.length > 0 && !stockCategories.error) {
             content = (
                 <List dataSource={stockCategories.data} size="large" bordered
                     renderItem={
