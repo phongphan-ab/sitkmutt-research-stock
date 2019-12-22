@@ -81,7 +81,7 @@ class StockCategoryFormModalContainer extends Component {
         };
 
         return (
-            <Modal title="เพิ่มประเภทพัสดุ" okText="เพิ่ม" cancelText="ยกเลิก"
+            <Modal title={ editMode ? 'แก้ไขประเภทพัสดุ' : 'เพิ่มประเภทพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
                 visible={visible}
                 onOk={this.onOkHandler}
                 onCancel={this.onCancelHandler}
