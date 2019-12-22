@@ -11,9 +11,9 @@ import { cancelStockCategoryItemEditing,  editStockCategoryItem, deleteStockCate
 export {
     antdDrawerMenuToggle,
     antdSiderMenuToggle,
-    deleteStockCategoryItem,
     cancelStockCategoryItemEditing,
     cancelStockItemEditing,
+    deleteStockCategoryItem,
     deleteStockItem,
     editStockCategoryItem,
     editStockItem,
