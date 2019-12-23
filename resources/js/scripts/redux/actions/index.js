@@ -5,6 +5,7 @@ import { openStockCategoryModalForm } from './cpanelStockCategoryAddingAction'
 import { cancelStockItemEditing,  editStockItem, deleteStockItem } from './cpanelStockModifyingItemAction'
 import { fetchCpanelStocks } from './fetchCpanelStocksAction'
 import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockCategoriesAction'
+import { fetchStockLocations, fetchStockLocationsSuccess } from './fetchStockLocationsAction'
 import { frmLoginLoading } from './frmLoginLoadingAction'
 import { cancelStockCategoryItemEditing,  editStockCategoryItem, deleteStockCategoryItem } from './stockCategoriesModifyItemAction'
 
@@ -21,6 +22,8 @@ export {
     fetchCpanelStocks,
     fetchStockCategories,
     fetchStockCategoriesSuccess,
+    fetchStockLocations,
+    fetchStockLocationsSuccess,
     openCpanelStocksFormModal,
     openStockCategoryModalForm,
 }

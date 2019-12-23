@@ -9,6 +9,7 @@ import frmLoginLoading from './frmLoginLoadingReducer'
 import cpanelStocks from './cpanelStocksFetchingReducer'
 import stockCategories from './stockCategoriesFetchingReducer'
 import stockCategoriesModifyItem from  './stockCategoryModifyItemReducer'
+import stockLocations from './stockLocationsFetchingReducer'
 
 const rootReducer = combineReducers({
     antdDrawerMenu,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     frmLoginLoading,
     stockCategories,
     stockCategoriesModifyItem
+    stockLocations,
 });
 
 export default rootReducer
