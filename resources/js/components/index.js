@@ -7,6 +7,7 @@ import ErrorModal from './ErrorModal'
 import NavbarSearchBox from './NavbarSearchBox'
 import SiderMenu from './SiderMenu'
 import StockCategoryFormModal from './StockCategoryFormModal'
+import StockLocationFormModal from './StockLocationFormModal'
 
 export {
     CpanelStocksFormModal,
@@ -17,5 +18,6 @@ export {
     ErrorModal,
     NavbarSearchBox,
     SiderMenu,
-    StockCategoryFormModal
+    StockCategoryFormModal,
+    StockLocationFormModal
 }
