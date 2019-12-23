@@ -23,8 +23,8 @@ const rootReducer = combineReducers({
     cpanelStocks,
     frmLoginLoading,
     stockCategories,
-    stockCategoriesModifyItem
     stockLocations,
+    stockCategoriesModifyItem,
     stockLocationModifyItem,
     stockLocations
 });
