@@ -2,6 +2,7 @@ import { antdDrawerMenuToggle } from './antdDrawerMenuAction'
 import { antdSiderMenuToggle } from './antdSiderMenuAction'
 import { openCpanelStocksFormModal } from './cpanelStocksFormModalAction'
 import { openStockCategoryModalForm } from './cpanelStockCategoryAddingAction'
+import { openStockLocationFormModal } from './cpanelStockLocationFormModalAction'
 import { cancelStockItemEditing,  editStockItem, deleteStockItem } from './cpanelStockModifyingItemAction'
 import { fetchCpanelStocks } from './fetchCpanelStocksAction'
 import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockCategoriesAction'
@@ -30,4 +31,5 @@ export {
     fetchStockLocationsSuccess,
     openCpanelStocksFormModal,
     openStockCategoryModalForm,
+    openStockLocationFormModal
 }
