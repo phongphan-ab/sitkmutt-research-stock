@@ -3,6 +3,7 @@ import DeleteStockCategoryButton from './DeleteStockCategoryButton'
 import DeleteStockLocationButton from './DeleteStockLocationButton'
 import DrawerMenu from './DrawerMenu'
 import EditStockCategoryButton from './EditStockCategoryButton'
+import EditStockLocationButton from './EditStockLocationButton'
 import ErrorModal from './ErrorModal'
 import NavbarSearchBox from './NavbarSearchBox'
 import SiderMenu from './SiderMenu'
@@ -15,6 +16,7 @@ export {
     DeleteStockLocationButton,
     DrawerMenu,
     EditStockCategoryButton,
+    EditStockLocationButton,
     ErrorModal,
     NavbarSearchBox,
     SiderMenu,
