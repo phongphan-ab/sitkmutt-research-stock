@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 
 import './bootstrap'
-import { IndexPage, LoginPage, StocksPage, StockCategoriesPage } from './pages'
+import { IndexPage, LoginPage, StocksPage, StockCategoriesPage, StockLocationsPage } from './pages'
 import { store } from './scripts/redux';
 
 window.axios.defaults.baseURL = '/api/'
@@ -29,6 +29,7 @@ const App = () => (
                 <Route exect path="/login" component={LoginPage} />
                 <Route exect path="/cpanel/stocks" component={StocksPage} />
                 <Route exect path="/cpanel/stock_categories" component={StockCategoriesPage} />
+                <Route exect path="/cpanel/stock_locations" component={StockLocationsPage} />
             </Switch>
         </Router>
     </Provider>
