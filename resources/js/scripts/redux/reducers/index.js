@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
     stockCategoriesModifyItem
     stockLocations,
     stockLocationModifyItem,
+    stockLocations
 });
 
 export default rootReducer
