@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('stock_categories', 'StockCategoriesController');
+Route::resource('stock_locations', 'StockLocationsController');
 Route::resource('stocks', 'StocksController');
