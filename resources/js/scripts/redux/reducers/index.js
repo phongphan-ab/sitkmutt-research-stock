@@ -9,6 +9,7 @@ import frmLoginLoading from './frmLoginLoadingReducer'
 import cpanelStocks from './cpanelStocksFetchingReducer'
 import stockCategories from './stockCategoriesFetchingReducer'
 import stockCategoriesModifyItem from  './stockCategoryModifyItemReducer'
+import stockLocationModifyItem from  './stockLocationModifyItemReducer'
 import stockLocations from './stockLocationsFetchingReducer'
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     stockCategories,
     stockCategoriesModifyItem
     stockLocations,
+    stockLocationModifyItem,
 });
 
 export default rootReducer

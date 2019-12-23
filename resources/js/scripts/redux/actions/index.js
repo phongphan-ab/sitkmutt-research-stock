@@ -8,15 +8,19 @@ import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockC
 import { fetchStockLocations, fetchStockLocationsSuccess } from './fetchStockLocationsAction'
 import { frmLoginLoading } from './frmLoginLoadingAction'
 import { cancelStockCategoryItemEditing,  editStockCategoryItem, deleteStockCategoryItem } from './stockCategoriesModifyItemAction'
+import { cancelStockLocationItemEditing,  editStockLocationItem, deleteStockLocationItem } from './stockLocationModifyItemAction'
 
 export {
     antdDrawerMenuToggle,
     antdSiderMenuToggle,
     cancelStockCategoryItemEditing,
+    cancelStockLocationItemEditing,
     cancelStockItemEditing,
     deleteStockCategoryItem,
+    deleteStockLocationItem,
     deleteStockItem,
     editStockCategoryItem,
+    editStockLocationItem,
     editStockItem,
     frmLoginLoading,
     fetchCpanelStocks,
