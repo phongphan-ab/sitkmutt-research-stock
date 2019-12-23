@@ -19,12 +19,12 @@ const SiderMenu = () => (
                 <span>แผงควบคุม</span>
             </span>
         }>
-            <Menu.Item key="cpanel.users"><Icon type="user" /><span>ผู้ใช้</span></Menu.Item>
+            <Menu.Item key="cpanel.users" disabled><Icon type="user" /><span>ผู้ใช้</span></Menu.Item>
             <Menu.Item key="cpanel.stocks"><Link to="/cpanel/stocks"><Icon type="container" /><span>พัสดุ</span></Link></Menu.Item>
             <Menu.Item key="cpanel.stock_categories"><Link to="/cpanel/stock_categories"><Icon type="appstore" /><span>ประเภทพัสดุ</span></Link></Menu.Item>
-            <Menu.Item key="cpanel.stock_locations"><Icon type="bank" /><span>สถานที่เก็บพัสดุ</span></Menu.Item>
-            <Menu.Item key="cpanel.requests"><Icon type="book" /><span>การยืมและการคืนพัสดุ</span></Menu.Item>
-            <Menu.Item key="cpanel.reports"><Icon type="file-text" /><span>รายงาน</span></Menu.Item>
+            <Menu.Item key="cpanel.stock_locations"><Link to="/cpanel/stock_locations"><Icon type="bank" /><span>สถานที่เก็บพัสดุ</span></Link></Menu.Item>
+            <Menu.Item key="cpanel.requests" disabled><Icon type="book" /><span>การยืมและการคืนพัสดุ</span></Menu.Item>
+            <Menu.Item key="cpanel.reports" disabled><Icon type="file-text" /><span>รายงาน</span></Menu.Item>
         </SubMenu>
     </Menu>
 )
