@@ -73,6 +73,7 @@ class CpanelStocksFormModalContainer extends Component {
     }
 
     render() {
+        let { visible, form, stockModifyingItem } = this.props
         let { editMode, data } = stockModifyingItem
         const { getFieldDecorator } = form
         const { Option } = Select
@@ -169,6 +170,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     cancelStockEditing: () => dispatch(cancelStockItemEditing()),
+    fetchStockCategories: () => dispatch(fetchStockCategories()),
     openCpanelStocksFormModal: isOpen => dispatch(openCpanelStocksFormModal(isOpen)),
 })
 
