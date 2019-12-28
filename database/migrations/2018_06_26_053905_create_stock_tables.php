@@ -21,6 +21,8 @@ class CreateStockTables extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->boolean('is_visible')->default(true);
+            $table->boolean('edit_prevention')->default(false);
+            $table->boolean('delete_prevention')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -65,6 +67,8 @@ class CreateStockTables extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->boolean('is_visible')->default(true);
+            $table->boolean('edit_prevention')->default(false);
+            $table->boolean('delete_prevention')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
