@@ -48,7 +48,7 @@ class StockCategoryFormModalContainer extends Component {
                         if (editMode) {
                             let index = list.findIndex(item => item.object_id == data.object_id)
                             values.object_id = data.object_id
-                            list[index] = values
+                            list[index] = {...data, ...values}
                             message.success('แก้ไขหมวดหมู่พัสดุแล้ว')
                         }
                         else {
