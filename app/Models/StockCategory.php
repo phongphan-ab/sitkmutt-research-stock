@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Stock;
+use App\Models\Stock;
 use App\Traits\HasUuid;
 
 class StockCategory extends Model
