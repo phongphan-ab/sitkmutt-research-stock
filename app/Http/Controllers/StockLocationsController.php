@@ -40,7 +40,7 @@ class StockLocationsController extends Controller
         $data = $request->all();
 
         $validationRule = [
-            'title' => 'required'
+            'title' => 'sometimes|required'
         ];
         $validator = Validator::make($data, $validationRule);
         if ($validator->fails()) {
@@ -87,7 +87,7 @@ class StockLocationsController extends Controller
         $data = $request->all();
 
         $validationRule = [
-            'title' => 'required'
+            'title' => 'sometimes|required'
         ];
         $validator = Validator::make($data, $validationRule);
         if ($validator->fails()) {
