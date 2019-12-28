@@ -10,10 +10,6 @@ use App\Traits\HasUuid;
 class StockCategory extends Model
 {
     use HasUuid;
-
-    protected $primaryKey = 'object_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
     
     protected $fillable = [
         'title',
