@@ -33,7 +33,7 @@ class CreateStockTables extends Migration
             $table->unsignedInteger('category_id')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->boolean('is_visible')->default(true);
+            $table->boolean('is_visible')->default(true);        
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
