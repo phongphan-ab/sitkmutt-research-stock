@@ -49,27 +49,28 @@ class StockLocationsController extends Controller
 
         $stockLocation = StockLocation::create($data);
 
-        return StockLocation::find($stockLocation->object_id);
+        return StockLocation::where('object_id', $stockLocation->object_id)->first();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\StockLocation  $stockLocation
+     * @param  \Illuminate\Http\Request  $request
+     * @param  String $object_id
      * @return \Illuminate\Http\Response
      */
-    public function show(StockLocation $stockLocation)
+    public function show(Request $request, String $object_id)
     {
-        return $stockLocation;
+        return StockLocation::where('object_id', $object_id)->first();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\StockLocation  $stockLocation
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(StockLocation $stockLocation)
+    public function edit(Request $request)
     {
         //
     }
@@ -78,10 +79,10 @@ class StockLocationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StockLocation  $stockLocation
+     * @param  String  $object_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StockLocation $stockLocation)
+    public function update(Request $request, String $object_id)
     {
         $data = $request->all();
 
@@ -93,6 +94,7 @@ class StockLocationsController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
+        $stockLocation = StockLocation::where('object_id', $object_id)->first();
         $stockLocation->update($data);
         return response($stockLocation);
     }
@@ -100,12 +102,13 @@ class StockLocationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StockLocation  $stockLocation
+     * @param  \Illuminate\Http\Request  $request
+     * @param  String  $object_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StockLocation $stockLocation)
+    public function destroy(Request $request, String $object_id)
     {
-        $stockLocation->delete();
+        StockLocation::where('object_id', $object_id)->first()->delete();
         return response(null);
     }
 }

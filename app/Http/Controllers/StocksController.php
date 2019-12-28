@@ -42,10 +42,10 @@ class StocksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Stock  $stock
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Stock $stock)
+    public function show(Request $request)
     {
         //
     }
@@ -53,10 +53,10 @@ class StocksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Stock  $stock
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stock $stock)
+    public function edit(Request $request)
     {
         //
     }
@@ -65,10 +65,9 @@ class StocksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request)
     {
         //
     }
@@ -76,10 +75,10 @@ class StocksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Stock  $stock
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy(Request $request)
     {
         //
     }
