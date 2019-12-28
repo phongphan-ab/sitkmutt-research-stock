@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Stock;
 use App\Traits\HasUuid;
 
 class StockLocation extends Model
