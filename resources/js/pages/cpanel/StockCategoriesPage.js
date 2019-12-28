@@ -24,7 +24,7 @@ class StockCategoriesPageContainer extends Component {
                             <List.Item key={item.object_id}
                                 actions={[
                                     <EditStockCategoryButton object_id={item.object_id} />,
-                                    <DeleteStockCategoryButton object_id={item.object_id} />
+                                    <DeleteStockCategoryButton object_id={item.object_id} disabled={item.delete_prevention} />
                                 ]}
                             >
                                 <List.Item.Meta

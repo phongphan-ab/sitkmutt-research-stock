@@ -24,7 +24,7 @@ class StockLocationsPageContainer extends Component {
                             <List.Item key={item.object_id}
                                 actions={[
                                     <EditStockLocationButton object_id={item.object_id} />,
-                                    <DeleteStockLocationButton object_id={item.object_id} />
+                                    <DeleteStockLocationButton object_id={item.object_id} disabled={item.delete_prevention == true} />
                                 ]}
                             >
                                 <List.Item.Meta

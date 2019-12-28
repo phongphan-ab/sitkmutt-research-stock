@@ -12,7 +12,18 @@ class StockCategoryFormModalContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            okBtnLoading: false
+            okBtnLoading: false,
+            editPrevention: false
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let data = nextProps.stockCategoriesModifyItem.data;
+
+        if (data) {
+            this.setState({
+                editPrevention: data.edit_prevention
+            })
         }
     }
 
@@ -62,6 +73,9 @@ class StockCategoryFormModalContainer extends Component {
         openStockCategoryModalForm(false)
         form.resetFields()
         cancelStockCategoryEditing()
+        this.setState({
+            editPrevention: false
+        })
     }
 
     render() {
@@ -80,6 +94,27 @@ class StockCategoryFormModalContainer extends Component {
             },
         };
 
+        const NotForEditPrevention = (
+            <>
+                <Form.Item label="ชื่อประเภท">
+                    {getFieldDecorator('title', {
+                        initialValue: editMode ? data.title : '',
+                        rules: [
+                            {
+                                required: true,
+                                message: 'โปรดป้อนชื่อประเภทพัสดุ',
+                            },
+                        ],
+                    })(<Input />)}
+                </Form.Item>
+                <Form.Item label="คำอธิบาย">
+                    {getFieldDecorator('description', {
+                        initialValue: editMode ? data.description : '',
+                    })(<TextArea row={3} />)}
+                </Form.Item>
+            </>
+        )
+
         return (
             <Modal title={ editMode ? 'แก้ไขประเภทพัสดุ' : 'เพิ่มประเภทพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
                 visible={visible}
@@ -88,22 +123,7 @@ class StockCategoryFormModalContainer extends Component {
                 confirmLoading={this.state.okBtnLoading}
             >
                 <Form {...formItemLayout}>
-                    <Form.Item label="ชื่อประเภท">
-                        {getFieldDecorator('title', {
-                            initialValue: editMode ? data.title : '',
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'โปรดป้อนชื่อประเภทพัสดุ',
-                                },
-                            ],
-                        })(<Input />)}
-                    </Form.Item>
-                    <Form.Item label="คำอธิบาย">
-                        {getFieldDecorator('description', {
-                            initialValue: editMode ? data.description : '',
-                        })(<TextArea row={3} />)}
-                    </Form.Item>
+                    { this.state.editPrevention ? null : NotForEditPrevention }
                     {
                         stockCategoriesModifyItem.editMode
                         ? (

@@ -12,7 +12,18 @@ class StockLocationFormModalContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            okBtnLoading: false
+            okBtnLoading: false,
+            editPrevention: false
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let data = nextProps.stockLocationModifyItem.data;
+
+        if (data) {
+            this.setState({
+                editPrevention: data.edit_prevention
+            })
         }
     }
 
@@ -62,6 +73,9 @@ class StockLocationFormModalContainer extends Component {
         openStockLocationFormModal(false)
         form.resetFields()
         cancelStockLocationEditing()
+        this.setState({
+            editPrevention: false
+        })
     }
 
     render() {
@@ -80,6 +94,27 @@ class StockLocationFormModalContainer extends Component {
             },
         };
 
+        const NotForEditPrevention = (
+            <>
+                <Form.Item label="ชื่อสถานที่">
+                    {getFieldDecorator('title', {
+                        initialValue: editMode ? data.title : '',
+                        rules: [
+                            {
+                                required: true,
+                                message: 'โปรดป้อนชื่อสถานที่',
+                            },
+                        ],
+                    })(<Input />)}
+                </Form.Item>
+                <Form.Item label="คำอธิบาย">
+                    {getFieldDecorator('description', {
+                        initialValue: editMode ? data.description : '',
+                    })(<TextArea row={3} />)}
+                </Form.Item>
+            </>
+        )
+
         return (
             <Modal title={ editMode ? 'แก้ไขสถานที่เก็บพัสดุ' : 'เพิ่มสถานที่เก็บพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
                 visible={visible}
@@ -88,22 +123,7 @@ class StockLocationFormModalContainer extends Component {
                 confirmLoading={this.state.okBtnLoading}
             >
                 <Form {...formItemLayout}>
-                    <Form.Item label="ชื่อสถานที่">
-                        {getFieldDecorator('title', {
-                            initialValue: editMode ? data.title : '',
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'โปรดป้อนชื่อสถานที่',
-                                },
-                            ],
-                        })(<Input />)}
-                    </Form.Item>
-                    <Form.Item label="คำอธิบาย">
-                        {getFieldDecorator('description', {
-                            initialValue: editMode ? data.description : '',
-                        })(<TextArea row={3} />)}
-                    </Form.Item>
+                    {this.state.editPrevention ? null : NotForEditPrevention}
                     {
                         stockLocationModifyItem.editMode
                         ? (

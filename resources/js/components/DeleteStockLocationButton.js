@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Button, Icon, message, Popconfirm } from 'antd'
+import { Button, Icon, message, Popconfirm, Tooltip } from 'antd'
 import Axios from 'axios'
 
 import { ErrorModal } from '~/components'
@@ -53,14 +53,28 @@ class DeleteStockLocationButtonContainer extends Component {
     }
 
     render() {
-        const { object_id } = this.props
+        const { object_id, disabled } = this.props
+
+        const DeleteButton = (
+            <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockLocationsDeleting} onClick={this.onDeleteHandler} disabled={disabled} />
+        )
+
+        let ButtonWrapper = DeleteButton
+
+        if (disabled) {
+            ButtonWrapper = (
+                <Tooltip title="เป็นค่าเริ่มต้นของระบบ ไม่สามารถลบได้" placement="topRight">
+                    {DeleteButton}
+                </Tooltip>
+            )
+        }
 
         return (
-            <Popconfirm placement="left" okType="danger" okText="ลบ" cancelText="ยกเลิก" onConfirm={this.deleteConfirmationHandler} onCancel={null}
+            <Popconfirm placement="left" okType="danger" okText="ลบ" cancelText="ยกเลิก" disabled={disabled} onConfirm={this.deleteConfirmationHandler} onCancel={null}
                 icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
                 title={<>พัสดุที่อยู่ในสถานที่นี้จะถูกเปลี่ยนเป็นสถานที่ &quot;อื่น ๆ&quot;<br />คุณแน่ใจหรือไม่ที่จะลบสถานที่นี้ ?</>}
             >
-                <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockLocationsDeleting} onClick={this.onDeleteHandler} />
+                {ButtonWrapper}
             </Popconfirm>
         )
     }
