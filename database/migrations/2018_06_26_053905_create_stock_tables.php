@@ -52,7 +52,6 @@ class CreateStockTables extends Migration
             $table->uuid('object_id')->unique();
             $table->unsignedBigInteger('stock_id');
             $table->text('path');
-            $table->unsignedTinyInteger('order')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
