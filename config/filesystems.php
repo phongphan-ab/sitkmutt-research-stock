@@ -64,7 +64,7 @@ return [
             'url' => env('AWS_URL'),
         ],
 
-        'minio' => [
+        'minio_upload' => [
             'driver' => 's3',
             'endpoint' => env('MINIO_ENDPOINT', 'http://127.0.0.1:9000'),
             'key' => env('MINIO_KEY'),
@@ -72,6 +72,15 @@ return [
             'region' => env('MINIO_REGION'),
             'bucket' => env('MINIO_BUCKET'),
         ],
+
+        'minio_download' => [
+            'driver' => 's3',
+            'endpoint' => env('MINIO_ENDPOINT_DOWNLOAD', 'http://127.0.0.1:9000'),
+            'key' => env('MINIO_KEY'),
+            'secret' => env('MINIO_SECRET'),
+            'region' => env('MINIO_REGION'),
+            'bucket' => env('MINIO_BUCKET'),
+        ]
 
     ],
 
