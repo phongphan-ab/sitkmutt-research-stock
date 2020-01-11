@@ -23,6 +23,8 @@ services:
             context: './docker/interpreter'
             dockerfile: 'Dockerfile'
         working_dir: /var/www/html
+        depends_on: 
+            - storage
         volumes: 
             - .:/var/www/html
             - ./docker/interpreter/php/php.ini:/usr/local/etc/php/conf.d/php_custom.ini
