@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use StockCategory;
 use App\Models\StockPicture;
+use App\Models\StockSku;
 use App\Traits\HasUuid;
 
 class Stock extends Model
@@ -33,5 +34,9 @@ class Stock extends Model
 
     public function stock_pictures() {
         return $this->hasMany(StockPicture::class);
+    }
+
+    public function stock_skus() {
+        return $this->hasMany(StockSku::class);
     }
 }
