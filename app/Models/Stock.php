@@ -18,7 +18,8 @@ class Stock extends Model
     ];
 
     protected $hidden = [
-        'id'
+        'id',
+        'category_id'
     ];
 
     protected $casts = [
