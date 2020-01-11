@@ -27,6 +27,6 @@ class StockCategory extends Model
 
 
     public function stocks() {
-        return $this->hasMany(Stock::class);
+        return $this->hasMany(Stock::class, 'category_id');
     }
 }
