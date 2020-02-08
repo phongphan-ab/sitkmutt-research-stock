@@ -15,7 +15,7 @@ services:
             - network
         ports:
             - ${DOCKER_SERVER_CONTAINER_PORT}:80
-        restart: always
+        restart: unless-stopped
     interpreter:
         container_name: ${DOCKER_INTERPRETER_CONTAINER_NAME}
         image: sitkmutt/research-stock-interpreter
@@ -30,7 +30,7 @@ services:
             - ./docker/interpreter/php/php.ini:/usr/local/etc/php/conf.d/php_custom.ini
         networks:
             - network
-        restart: always
+        restart: unless-stopped
     database:
         container_name: ${DOCKER_DATABASE_CONTAINER_NAME}
         image: mariadb:10.4
@@ -46,7 +46,7 @@ services:
         ports:
             - ${DOCKER_DATABASE_CONTAINER_PORT}:3306
         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=${DB_COLLATION}']
-        restart: always
+        restart: unless-stopped
     database_manager:
         container_name: ${DOCKER_DBMGR_CONTAINER_NAME}
         image: phpmyadmin/phpmyadmin
@@ -63,7 +63,7 @@ services:
             - network
         ports:
             - ${DOCKER_DBMGR_CONTAINER_PORT}:80
-        restart: always
+        restart: unless-stopped
     storage:
         container_name: ${DOCKER_STORAGE_CONTAINER_NAME}
         image: minio/minio:RELEASE.2019-09-26T19-42-35Z
@@ -78,7 +78,7 @@ services:
             - ${DOCKER_STORAGE_CONTAINER_PORT}:9000
         volumes:
         - storage:/export
-        restart: always
+        restart: unless-stopped
 
 networks:
     network:
