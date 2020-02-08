@@ -39,8 +39,6 @@ services:
             - MYSQL_USER=${DOCKER_DATABASE_DATABASE_USERNAME}
             - MYSQL_PASSWORD=${DOCKER_DATABASE_DATABASE_PASSWORD}
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
-        volumes: 
-            - database:/var/lib/mysql/
         networks:
             - network
         ports:
@@ -85,7 +83,5 @@ networks:
         name: sitkmutt_research_stock-networks-network
 
 volumes:
-    database:
-        name: sitkmutt_research_stock-volumes-database
     storage:
         name: sitkmutt_research_stock-volumes-storage
