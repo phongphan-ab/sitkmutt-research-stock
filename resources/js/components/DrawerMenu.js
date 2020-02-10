@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { Drawer } from 'antd'
 import styled from 'styled-components'
 
@@ -16,11 +17,15 @@ const StyledDrawer = styled(Drawer)`
     }
 `
 
-const DrawerMenuWithRedux = ({siderCollapsed, dispatch}) => (
-    <StyledDrawer title="เมนู" placement="left" visible={siderCollapsed} closable={true} onClose={()=> dispatch(onClose())}>
-        <SiderMenu />
-    </StyledDrawer>
-)
+const DrawerMenuWithRedux = ({siderCollapsed, dispatch}) => {
+    const { t } = useTranslation()
+
+    return (
+        <StyledDrawer title={t('sider.title')} placement="left" visible={siderCollapsed} closable={true} onClose={()=> dispatch(onClose())}>
+            <SiderMenu />
+        </StyledDrawer>
+    )
+}
 
 const mapStateToProps = state => ({
     siderCollapsed: state.antdDrawerMenu || false

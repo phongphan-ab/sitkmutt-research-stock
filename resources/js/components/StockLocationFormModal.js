@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Form, Modal, Input, message, Switch } from 'antd'
 import { cancelStockLocationItemEditing, fetchStockLocationsSuccess, openStockLocationFormModal } from '~/scripts/redux/actions'
 import Axios from 'axios'
@@ -28,7 +29,7 @@ class StockLocationFormModalContainer extends Component {
     }
 
     onOkHandler = e => {
-        const { form, stockLocations, putStockLocationsData, openStockLocationFormModal, stockLocationModifyItem } = this.props
+        const { t, form, stockLocations, putStockLocationsData, openStockLocationFormModal, stockLocationModifyItem } = this.props
         e.preventDefault()
         form.validateFields(async (err, values) => {
             console.log(values)
@@ -44,16 +45,16 @@ class StockLocationFormModalContainer extends Component {
                 })
                     .then(response => {
                         let list = stockLocations.data
-                        
+
                         if (editMode) {
                             let index = list.findIndex(item => item.object_id == data.object_id)
                             values.object_id = data.object_id
                             list[index] = {...data, ...values}
-                            message.success('แก้ไขสถานที่เก็บพัสดุแล้ว')
+                            message.success(t('modals.stock_location.title.edit'))
                         }
                         else {
                             list.push(response.data)
-                            message.success('เพิ่มสถานที่เก็บพัสดุแล้ว')
+                            message.success(t('modals.stock_location.title.add'))
                         }
 
                         putStockLocationsData(list)
@@ -79,7 +80,7 @@ class StockLocationFormModalContainer extends Component {
     }
 
     render() {
-        const { visible, form, stockLocationModifyItem } = this.props
+        const { t, visible, form, stockLocationModifyItem } = this.props
         let { editMode, data } = stockLocationModifyItem
         const { getFieldDecorator } = form
 
@@ -96,18 +97,18 @@ class StockLocationFormModalContainer extends Component {
 
         const NotForEditPrevention = (
             <>
-                <Form.Item label="ชื่อสถานที่">
+                <Form.Item label={t('modals.stock_location.form.title')}>
                     {getFieldDecorator('title', {
                         initialValue: editMode ? data.title : '',
                         rules: [
                             {
                                 required: true,
-                                message: 'โปรดป้อนชื่อสถานที่',
+                                message: t('modals.stock_location.form.validation.title.required'),
                             },
                         ],
                     })(<Input />)}
                 </Form.Item>
-                <Form.Item label="คำอธิบาย">
+                <Form.Item label={t('modals.stock_location.form.description')}>
                     {getFieldDecorator('description', {
                         initialValue: editMode ? data.description : '',
                     })(<TextArea row={3} />)}
@@ -116,7 +117,7 @@ class StockLocationFormModalContainer extends Component {
         )
 
         return (
-            <Modal title={ editMode ? 'แก้ไขสถานที่เก็บพัสดุ' : 'เพิ่มสถานที่เก็บพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
+            <Modal title={ editMode ? t('modals.stock_location.title.edit') : t('modals.stock_location.title.add') } okText={ editMode ? t('modals.stock_location.ok_text.edit') : t('modals.stock_location.ok_text.add') } cancelText={t('modals.stock_location.cancel_text')}
                 visible={visible}
                 onOk={this.onOkHandler}
                 onCancel={this.onCancelHandler}
@@ -127,7 +128,7 @@ class StockLocationFormModalContainer extends Component {
                     {
                         stockLocationModifyItem.editMode
                         ? (
-                            <Form.Item label="แสดงเป็นสาธารณะ">
+                            <Form.Item label={t('modals.stock_location.form.visible')}>
                                 {getFieldDecorator('is_visible', {
                                     initialValue: data.is_visible,
                                     valuePropName: 'checked'
@@ -139,7 +140,7 @@ class StockLocationFormModalContainer extends Component {
                 </Form>
             </Modal>
         )
-    } 
+    }
 }
 
 const StockLocationFormFormModalWrappper = Form.create({name: 'frm-stock_location-info'})(StockLocationFormModalContainer)
@@ -156,6 +157,7 @@ const mapDispatchToProps = dispatch => ({
     cancelStockLocationEditing: () => dispatch(cancelStockLocationItemEditing())
 })
 
-const StockLocationFormModal = connect(mapStateToProps, mapDispatchToProps)(StockLocationFormFormModalWrappper)
+const StockLocationFormModalTranslation = withTranslation()(StockLocationFormFormModalWrappper)
+const StockLocationFormModal = connect(mapStateToProps, mapDispatchToProps)(StockLocationFormModalTranslation)
 
 export default StockLocationFormModal;

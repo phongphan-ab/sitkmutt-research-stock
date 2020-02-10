@@ -24,6 +24,7 @@ class DeleteStockCategoryButtonContainer extends Component {
 
     deleteConfirmationHandler = (e) => {
         const {
+            t,
             object_id,
             stockCategories,
             putStockCategoryDataToState,
@@ -39,7 +40,7 @@ class DeleteStockCategoryButtonContainer extends Component {
                 let data = stockCategories.data
                 data = data.filter(item => item.object_id != object_id)
                 putStockCategoryDataToState(data)
-                message.success('ลบหมวดหมู่พัสดุแล้ว')
+                message.success(t('pages.cpanel_stockcategories.content.list.buttons.delete.toast_success'))
             })
             .catch(error => {
                 ErrorModal(error)
@@ -53,7 +54,7 @@ class DeleteStockCategoryButtonContainer extends Component {
     }
 
     render() {
-        const { object_id, disabled } = this.props
+        const { t, object_id, disabled } = this.props
 
         const DeleteButton = (
             <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockCategoryDeleting} onClick={this.onDeleteHandler} disabled={disabled} />
@@ -63,16 +64,21 @@ class DeleteStockCategoryButtonContainer extends Component {
 
         if (disabled) {
             ButtonWrapper = (
-                <Tooltip title="เป็นค่าเริ่มต้นของระบบ ไม่สามารถลบได้" placement="topRight">
+                <Tooltip title={t('pages.cpanel_stockcategories.content.list.buttons.delete.tooltip.system_default')} placement="topRight">
                     {DeleteButton}
                 </Tooltip>
             )
         }
 
         return (
-            <Popconfirm placement="left" okType="danger" okText="ลบ" cancelText="ยกเลิก" disabled={disabled} onConfirm={this.deleteConfirmationHandler} onCancel={null}
+            <Popconfirm placement="left" okType="danger"
+                okText={t('pages.cpanel_stockcategories.content.list.buttons.delete.popconfirm.buttons.ok')}
+                cancelText={t('pages.cpanel_stockcategories.content.list.buttons.delete.popconfirm.buttons.cancel')}
+                disabled={disabled}
+                onConfirm={this.deleteConfirmationHandler}
+                onCancel={null}
                 icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
-                title={<>พัสดุที่อยู่ในหมวดหมู่นี้จะถูกเปลี่ยนไปอยู่ในหมวด &quot;อื่น ๆ&quot;<br />คุณแน่ใจหรือไม่ที่จะลบหมวดหมู่นี้ ?</>}
+                title={<div dangerouslySetInnerHTML={{__html: t('pages.cpanel_stockcategories.content.list.buttons.delete.popconfirm.description')}}></div>}
             >
                 {ButtonWrapper}
             </Popconfirm>
@@ -90,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
     putStockCategoryDataToState: (data) => dispatch(fetchStockCategoriesSuccess(data)),
 })
 
-const DeleteStockCategoryButton = connect(mapStateToProps, mapDispatchToProps)(DeleteStockCategoryButtonContainer)
+const DeleteStockCategoryButtonWithTranslation = withTranslation()(DeleteStockCategoryButtonContainer)
+const DeleteStockCategoryButton = connect(mapStateToProps, mapDispatchToProps)(DeleteStockCategoryButtonWithTranslation)
 
 export default DeleteStockCategoryButton

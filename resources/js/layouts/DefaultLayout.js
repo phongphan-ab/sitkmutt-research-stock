@@ -4,6 +4,7 @@ import { Layout, Menu, Icon, Typography, Avatar, Dropdown, Badge, Divider, Popov
 import styled from 'styled-components'
 import 'matchmedia-polyfill/matchMedia'
 import 'matchmedia-polyfill/matchMedia.addListener'
+import { useTranslation } from 'react-i18next'
 
 import { SiderMenu, DrawerMenu, NavbarSearchBox } from '~/components'
 import { antdDrawerMenuToggle, antdSiderMenuToggle } from '~/scripts/redux/actions'
@@ -64,25 +65,26 @@ const TextCenter = styled.div`
     text-align: center;
 `
 
-const userMenu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-          3rd menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-);
+const userMenu = () => {
+    const { t } = useTranslation()
+
+    return (
+        <Menu>
+            <Menu.Item>
+                <a target="_blank">{t('navbar.profile.menus.requests')}</a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank">{t('navbar.profile.menus.settings')}</a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank">{t('navbar.profile.menus.logout')}</a>
+            </Menu.Item>
+        </Menu>
+    )
+};
+
+const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => {
+    const { t } = useTranslation()
 
 const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen, isSiderMenuOpen, dispatch }) => (
     <Layout>
@@ -136,23 +138,14 @@ const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen
                     maxWidth: '640px',
                     padding: '0 16px'
                 }}>
-                    <NavbarSearchBox placeholder="ค้นหาพัสดุที่นี่" style={{
-                        width: '100%',
-                        maxWidth: '640px',
-                        height: '48px',
-                    }} />
-                </div> 
+                        <NavbarSearchBox placeholder={t('navbar.search_placeholder')} style={{
             </div>
             <RightMenuWrapper>
                 <Badge count={5}>
                     <Icon type="shopping-cart" style={{ fontSize: '24px' }} />
                 </Badge>
                 <Divider type="vertical" />
-                <Popover placement="bottomRight" content={notificationList} title="การแจ้งเตือน" arrowPointAtCenter>
-                    <Badge count={5}>
-                        <Icon type="bell" style={{ fontSize: '24px' }} />
-                    </Badge>
-                </Popover>
+                    <Popover placement="bottomRight" content={notificationList} title={t('navbar.notification.title')} arrowPointAtCenter>
                 <Dropdown overlay={userMenu}>
                     <a href="#">
                         <Avatar style={{ color: '#316195', backgroundColor: '#8bb1da' }}>U</Avatar>
@@ -227,14 +220,8 @@ const DefaultLayoutWithRedux = ({title, operationBtn, children, isDrawerMenuOpen
                         padding: '16px'
                     }}>
                         <TextCenter>
-                            <Text disabled style={{ cursor: 'auto' }}>สงวนลิขสิทธิ์ พ.ศ. 2562 คณะเทคโนโลยีสารสนเทศ มจธ. ขอสงวนสิทธิ์ทุกประการ</Text>
-                        </TextCenter>
-                    </Footer>
-                </Content>
-            </Layout>
-        </Layout>
-    </Layout>
-)
+                                    {t('footer.copyright_text', {'year_ad': new Date().getFullYear()})}
+}
 
 const mapStateToProps = state => ({
     isSiderMenuOpen: state.antdSiderMenu,

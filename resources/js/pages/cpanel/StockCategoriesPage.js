@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect }  from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Button, Empty, Icon, List, Result, Spin, Tooltip } from 'antd'
 import { connect }  from 'react-redux'
 
@@ -6,14 +8,14 @@ import { DeleteStockCategoryButton, EditStockCategoryButton, StockCategoryFormMo
 import DefaultLayout from '~/layouts'
 import { fetchStockCategories, openStockCategoryModalForm } from '~/scripts/redux/actions'
 
-class StockCategoriesPageContainer extends Component {   
+class StockCategoriesPageContainer extends Component {
 
     componentDidMount() {
         this.props.dispatch(fetchStockCategories())
     }
 
     render() {
-        const { stockCategories, isStockCategoryAddingModalOpen, dispatch } = this.props
+        const { t, stockCategories, isStockCategoryAddingModalOpen, dispatch } = this.props
 
         let content
         if (stockCategories.data && stockCategories.data.length > 0 && !stockCategories.error) {
@@ -28,7 +30,7 @@ class StockCategoriesPageContainer extends Component {
                                 ]}
                             >
                                 <List.Item.Meta
-                                    title={<>{item.title}{!item.is_visible ? (<Tooltip title="ถูกซ่อนไว้">&nbsp;<Icon type="disconnect" /></Tooltip>) : ''}</>}
+                                    title={<>{item.title}{!item.is_visible ? (<Tooltip title={t('pages.cpanel_stockcategories.content.list.hidden')}>&nbsp;<Icon type="disconnect" /></Tooltip>) : ''}</>}
                                     description={item.description}
                                 />
                             </List.Item>
@@ -41,27 +43,26 @@ class StockCategoriesPageContainer extends Component {
             content = (
                 <Result
                     status="error"
-                    title="พบข้อผิดพลาด"
+                    title={t('pages.cpanel_stockcategories.result.error.title')}
                     subTitle={(
                         <>
-                            เกิดข้อผิดพลาดขณะโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง<br />
-                            <small>(รหัสข้อผิดพลาด: {stockCategories.error.response.status})</small>
+                            {t('pages.cpanel_stockcategories.result.error.description')}<br />
                         </>
                     )}
                 />
             )
         }
         else {
-            content = (<Empty description="ยังไม่มีหมวดหมู่พัสดุ กด &quot;เพิ่ม&quot; เพื่อเพิ่มหมวดหมู่พัสดุ"/>)
+            content = (<Empty description={t('pages.cpanel_stockcategories.result.empty.description')}/>)
         }
 
         return (
-            <DefaultLayout title="ประเภทพัสดุ"
+            <DefaultLayout title={t('pages.cpanel_stockcategories.title')}
                 operationBtn={
-                    <Button type="primary" onClick={() => dispatch(openStockCategoryModalForm(true))}>เพิ่ม</Button>
+                    <Button type="primary" onClick={() => dispatch(openStockCategoryModalForm(true))}>{t('pages.cpanel_stockcategories.actions.button.add')}</Button>
                 }
             >
-                <Spin tip="กำลังโหลด..." spinning={stockCategories.loading}>
+                <Spin tip={t('pages.cpanel_stockcategories.result.loading.title')} spinning={stockCategories.loading}>
                     {content}
                 </Spin>
                 <StockCategoryFormModal visible={isStockCategoryAddingModalOpen} />
@@ -75,6 +76,7 @@ const mapStateToProps = state => ({
     stockCategories: state.stockCategories
 })
 
-const StockCategoriesPage = connect(mapStateToProps)(StockCategoriesPageContainer)
+const StockCategoriesPageWithTranslation = withTranslation()(StockCategoriesPageContainer)
+const StockCategoriesPage = connect(mapStateToProps)(StockCategoriesPageWithTranslation)
 
 export default StockCategoriesPage

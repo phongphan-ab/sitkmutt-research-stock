@@ -1,0 +1,255 @@
+{
+    "translation": {
+        "navbar": {
+            "search_placeholder": "ค้นหาพัสดุที่นี่...",
+            "notification": {
+                "title": "การแจ้งเตือน"
+            },
+            "profile": {
+                "menus": {
+                    "requests": "ประวัติคำขอ",
+                    "settings": "การตั้งค่า",
+                    "logout": "ออกจากระบบ"
+                }
+            }
+        },
+        "sider": {
+            "stock_categories": "แค็ตตาล็อกพัสดุ",
+            "control_panel": "แผงควบคุม",
+            "control_panels": {
+                "users": "ผู้ใช้",
+                "stocks": "พัสดุ",
+                "stock_categories": "ประเภทพัสดุ",
+                "stock_locations": "สถานที่เก็บพัสดุ",
+                "requests": "คำขอ",
+                "reports": "รายงาน"
+            }
+        },
+        "pages": {
+            "cpanel_stockcategories": {
+                "title": "ประเภทพัสดุ",
+                "actions": {
+                    "button": {
+                        "add": "เพิ่ม"
+                    }
+                },
+                "content": {
+                    "list": {
+                        "hidden": "ถูกซ่อนไว้",
+                        "buttons": {
+                            "edit": "แก้ไข",
+                            "delete": {
+                                "tooltip": {
+                                    "system_default": "เป็นค่าเริ่มต้นของระบบซึ่งไม่สามารถลบได้"
+                                },
+                                "popconfirm": {
+                                    "description": "พัสดุที่อยู่ในหมวดหมู่นี้จะถูกย้ายไปยังหมวด \"อื่น ๆ\"<br />คุณแน่ใจหรือไม่ที่จะลบหมวดหมู่นี้ ?",
+                                    "buttons": {
+                                        "ok": "ลบ",
+                                        "cancel": "ยกเลิก"
+                                    }
+                                },
+                                "toast_success": "ลบหมวดหมู่พัสดุแล้ว"
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "loading": {
+                        "title": "กำลังโหลด..."
+                    },
+                    "empty": {
+                        "description": "ยังไม่มีหมวดหมู่พัสดุเลย กด \"เพิ่ม\" เพื่อเพิ่มหมวดหมู่"
+                    },
+                    "error": {
+                        "title": "เกิดข้อผิดพลาด",
+                        "description": "ข้อผิดพลาดได้เกิดขึ้นขณะที่กำลังโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง",
+                        "http_error_code": "รหัสข้อผิดพลาด: HTTP {{code}}"
+                    }
+                }
+            },
+            "cpanel_stocklocations": {
+                "title": "สถานที่เก็บพัสดุ",
+                "actions": {
+                    "button": {
+                        "add": "เพิ่ม"
+                    }
+                },
+                "content": {
+                    "list": {
+                        "hidden": "ถูกซ่อนไว้",
+                        "buttons": {
+                            "edit": "แก้ไข",
+                            "delete": {
+                                "tooltip": {
+                                    "system_default": "เป็นค่าเริ่มต้นของระบบซึ่งไม่สามารถลบได้"
+                                },
+                                "popconfirm": {
+                                    "description": "พัสดุที่อยู่ในสถานที่นี้จะถูกย้ายไปยังที่ \"อื่น ๆ\"<br />คุณแน่ใจหรือไม่ที่จะลบสถานที่นี้ ?",
+                                    "buttons": {
+                                        "ok": "ลบ",
+                                        "cancel": "ยกเลิก"
+                                    }
+                                },
+                                "toast_success": "ลบสถานที่เก็บพัสดุแล้ว"
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "loading": {
+                        "title": "กำลังโหลด..."
+                    },
+                    "empty": {
+                        "description": "ยังไม่มีสถานที่เก็บพัสดุเลย กด \"เพิ่ม\" เพื่อเพิ่มสถานที่"
+                    },
+                    "error": {
+                        "title": "เกิดข้อผิดพลาด",
+                        "description": "ข้อผิดพลาดได้เกิดขึ้นขณะที่กำลังโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง",
+                        "http_error_code": "รหัสข้อผิดพลาด: HTTP {{code}}"
+                    }
+                }
+            },
+            "login": {
+                "form": {
+                    "username": {
+                        "label": "ชื่อผู้ใช้",
+                        "placeholder": "ชื่อผู้ใช้ของอีเมลคณะ",
+                        "validation": {
+                            "required": "โปรดป้อนชื่อผู้ใช้"
+                        }
+                    },
+                    "password": {
+                        "label": "รหัสผ่าน",
+                        "placeholder": "รหัสผ่านของอีเมลคณะ",
+                        "validation": {
+                            "required": "โปรดป้อนรหัสผ่าน"
+                        }
+                    }
+                },
+                "button": {
+                    "login": "เข้าสู่ระบบ"
+                },
+                "spinner": {
+                    "loading": "กำลังโหลด..."
+                }
+            }
+        },
+        "modals": {
+            "stock": {
+                "title_add": "เพิ่มพัสดุ",
+                "title_edit": "แก้ไขพัสดุ",
+                "form": {
+                    "title": {
+                        "label": "ชื่อพัสดุ",
+                        "validation": {
+                            "required": "โปรดป้อนชื่อพัสดุ"
+                        }
+                    },
+                    "category": {
+                        "label": "หมวดหมู่",
+                        "placeholder": "โปรดเลือก...",
+                        "validation": {
+                            "required": "โปรดเลือกหมวดหมู่"
+                        }
+                    },
+                    "description": {
+                        "label": "คำอธิบาย"
+                    },
+                    "pictures": {
+                        "label": "รูปภาพ",
+                        "description": "เลือกได้ 1 ไฟล์ต่อครั้ง ไฟล์ละไม่เกิน 4 เมกะไบต์ สูงสุด 9 ไฟล์",
+                        "button": {
+                            "select": "เลือกไฟล์..."
+                        }
+                    },
+                    "is_visible": {
+                        "label": "แสดงเป็นสาธารณะ"
+                    }
+                },
+                "button": {
+                    "ok_add": "เพิ่ม",
+                    "ok_edit": "แก้ไข",
+                    "cancel": "ยกเลิก"
+                },
+                "alert": {
+                    "picture_amount_exceeded": {
+                        "title": "ถึงขีดจำกัดแล้ว",
+                        "description": "ไฟล์ที่เลือกกับไฟล์ที่เลือกไว้ก่อนหน้าได้เกินจำนวนสูงสุดที่จะอัปโหลดแล้ว",
+                        "ok_text": "ตกลง"
+                    }
+                },
+                "toast": {
+                    "success_add:": "สร้างพัสดุแล้ว",
+                    "success_edit:": "แก้ไขพัสดุแล้ว"
+                }
+            },
+            "stock_category": {
+                "title": {
+                    "add": "เพิ่มประเภทพัสดุ",
+                    "edit": "แก้ไขประเภทพัสดุ"
+                },
+                "form": {
+                    "title": "ชื่อประเภท",
+                    "description": "คำอธิบาย",
+                    "visible": "แสดงเป็นสาธารณะ",
+                    "validation": {
+                        "title": {
+                            "required": "โปรดป้อนชื่อประเภท"
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "เพิ่ม",
+                    "edit": "แก้ไข"
+                },
+                "cancel_text": "ยกเลิก",
+                "success_text": {
+                    "add": "เพิ่มประเภทพัสดุแล้ว",
+                    "edit": "แก้ไขประเภทเก็บพัสดุแล้ว"
+                }
+            },
+            "stock_location": {
+                "title": {
+                    "add": "เพิ่มสถานที่เก็บพัสดุ",
+                    "edit": "แก้ไขสถานที่เก็บพัสดุ"
+                },
+                "form": {
+                    "title": "ชื่อสถานที่",
+                    "description": "คำอธิบาย",
+                    "visible": "แสดงเป็นสาธารณะ",
+                    "validation": {
+                        "title": {
+                            "required": "โปรดป้อนชื่อสถานที่"
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "เพิ่ม",
+                    "edit": "แก้ไข"
+                },
+                "cancel_text": "ยกเลิก",
+                "success_text": {
+                    "add": "เพิ่มสถานที่เก็บพัสดุแล้ว",
+                    "edit": "แก้ไขสถานที่เก็บพัสดุแล้ว"
+                }
+            }
+        },
+        "alert": {
+            "title_error": "พบข้อผิดพลาด",
+            "message": {
+                "skustock_remaining": "ไม่สามารถลบได้ เนื่องจากมีพัสดุย่อยคงเหลืออย่างน้อย 1 รายการ",
+                "other": {
+                    "description": "เกิดข้อผิดพลาดขณะส่งข้อมูลไปยังเซิร์ฟเวอร์ โปรดลองอีกครั้งในภายหลัง",
+                    "http_error_code": "รหัสข้อผิดพลาด: HTTP {{code}}"
+                }
+            },
+            "button": {
+                "ok": "ตกลง"
+            }
+        },
+        "footer": {
+            "copyright_text": "สงวนลิขสิทธิ์ {{year_ad}} คณะเทคโนโลยีสารสนเทศ มจธ. ขอสงวนสิทธิ์ทุกประการ"
+        }
+    }
+}

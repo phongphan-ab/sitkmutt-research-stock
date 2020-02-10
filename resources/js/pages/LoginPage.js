@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { Button, Card, Form, Input, Layout, Spin, Typography } from 'antd'
 import styled from 'styled-components'
+
 import { frmLoginLoading } from '~/scripts/redux/actions'
 
 const { Content } = Layout
@@ -29,6 +31,7 @@ const LandingLayoutWrapper = styled.div`
 `
 
 const LoginPageWrapper = ({ form, isSpinSpining, dispatch }) => {
+    const { t } = useTranslation()
     const { getFieldDecorator } = form
     let loadingSpinned = false
 
@@ -62,34 +65,34 @@ const LoginPageWrapper = ({ form, isSpinSpining, dispatch }) => {
                             width: '100%',
                             maxWidth: '360px'
                         }}>
-                            <Spin tip="กำลังโหลด&hellip;" spinning={isSpinSpining}>
+                            <Spin tip={t('pages.login.spinner.loading')} spinning={isSpinSpining}>
                                 <Form layout="vertical" onSubmit={(e) => frmLoginSubmitHandler(e, dispatch)}>
-                                    <Form.Item label="ชื่อผู้ใช้">
+                                    <Form.Item label={t('pages.login.form.username.label')}>
                                         {
                                             getFieldDecorator('username', {
                                             rules: [
                                                 {
                                                     required: true,
-                                                    message: 'โปรดป้อนชื่อผู้ใช้'
+                                                    message: t('pages.login.form.username.validation.required')
                                                 }
                                             ],
-                                            })(<Input size="large" placeholder="ชื่อผู้ใช้ของอีเมลของคณะ" />)
+                                            })(<Input size="large" placeholder={t('pages.login.form.username.placeholder')} />)
                                         }
                                     </Form.Item>
-                                    <Form.Item label="รหัสผ่าน">
+                                    <Form.Item label={t('pages.login.form.password.label')}>
                                         {
                                             getFieldDecorator('password', {
                                             rules: [
                                                 {
                                                     required: true,
-                                                    message: 'โปรดป้อนรหัสผ่าน'
+                                                    message: t('pages.login.form.password.validation.required')
                                                 }
                                             ],
-                                            })(<Input type="password" size="large" placeholder="รหัสเดียวกับอีเมลของคณะ" />)
+                                            })(<Input type="password" size="large" placeholder={t('pages.login.form.password.placeholder')} />)
                                         }
                                     </Form.Item>
                                     <Button type="primary" htmlType="submit" size="large" style={{ width: '100%' }}>
-                                        เข้าสู่ระบบ
+                                        {t('pages.login.button.login')}
                                     </Button>
                                 </Form>
                             </Spin>
@@ -99,7 +102,7 @@ const LoginPageWrapper = ({ form, isSpinSpining, dispatch }) => {
                             color: '#ffffff',
                             cursor: 'auto',
                         }}>
-                            <small>สงวนลิขสิทธิ์ พ.ศ. 2562 คณะเทคโนโลยีสารสนเทศ มจธ. ขอสงวนสิทธิ์ทุกประการ</small>
+                            <small>{t('footer.copyright_text')}</small>
                         </Text>
                     </LandingLayoutWrapper>
                 </Content>

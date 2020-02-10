@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Button, Form, Icon, Input, Modal, message, Select, Switch, Upload } from 'antd'
 import { cancelStockItemEditing, fetchStockCategoriesSuccess, openCpanelStocksFormModal, fetchStockCategories } from '~/scripts/redux/actions'
 
@@ -38,13 +39,14 @@ class CpanelStocksFormModalContainer extends Component {
     }
 
     beforeUpload = (file, fileList) => {
+        const { t } = this.props
         if (fileList.length + this.state.pictureFileList.length > 9) {
             Modal.error({
-                title: 'เกินจำนวนที่จำกัดไว้แล้ว',
+                title: t('modal.alert.picture_amount_exceeded.title'),
                 content: <p>
-                    จำนวนไฟล์ที่คุณเพิ่งเลือกกับไฟล์ที่เลือกก่อนหน้าเกินจำนวนสูงสุดที่สามารถอัปโหลดได้แล้ว
+                    {t('modal.alert.picture_amount_exceeded.description')}
                 </p>,
-                okText: 'ตกลง'
+                okText: t('modal.alert.picture_amount_exceeded.ok_text')
             })
         }
         else {
@@ -73,7 +75,7 @@ class CpanelStocksFormModalContainer extends Component {
     }
 
     render() {
-        let { visible, form, stockModifyingItem } = this.props
+        let { t, visible, form, stockModifyingItem } = this.props
         let { editMode, data } = stockModifyingItem
         const { getFieldDecorator } = form
         const { Option } = Select
@@ -90,47 +92,49 @@ class CpanelStocksFormModalContainer extends Component {
         };
 
         return (
-            <Modal title={ editMode ? 'แก้ไขพัสดุ' : 'เพิ่มพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
+            <Modal
+                title={t('modals.stock.title', {context: editMode ? 'edit' : 'add'})}
+                okText={t('modals.stock.button.ok', {context: editMode ? 'edit' : 'add'})}
+                cancelText={t('modals.stock.button.cancel')}
                 visible={visible}
                 onOk={this.onOkHandler}
                 onCancel={this.onCancelHandler}
                 confirmLoading={this.state.okBtnLoading}
             >
                 <Form {...formItemLayout}>
-                    <Form.Item label="ชื่อพัสดุ">
+                    <Form.Item label={t('modals.stock.form.title.label')}>
                         {getFieldDecorator('title', {
                             initialValue: editMode ? data.title : '',
                             rules: [
                                 {
                                     required: true,
-                                    message: 'โปรดป้อนชื่อพัสดุ',
+                                    message: t('modals.stock.form.title.validation.required'),
                                 },
                             ],
                         })(<Input />)}
                     </Form.Item>
-                    <Form.Item label="หมวดหมู่">
+                    <Form.Item label={t('modals.stock.form.category.label')}>
                         {getFieldDecorator('category_id', {
                             initialValue: editMode ? data.description : '',
                             rules: [
                                 {
                                     required: true,
-                                    message: 'โปรดเลือกหมวดหมู่ของพัสดุนี้',
+                                    message: t('modals.stock.form.category.validation.required'),
                                 },
                             ]
                         })(
-                            <Select showSearch placeholder="โปรดเลือก..." filterOption={this.searchFilterAlgorithm}>
+                            <Select showSearch placeholder={t('modals.stock.form.category.placeholder')} filterOption={this.searchFilterAlgorithm}>
                                 {this.state.stockCategoryOptions}
                                 <Option key="null" value="null">อื่น ๆ</Option>
                             </Select>
                         )}
                     </Form.Item>
-                    <Form.Item label="คำอธิบาย">
+                    <Form.Item label={t('modals.stock.form.description.label')}>
                         {getFieldDecorator('description', {
                             initialValue: editMode ? data.description : '',
                         })(<TextArea row={3} />)}
                     </Form.Item>
-                    <Form.Item label="รูปภาพพัสดุ">
-                        {getFieldDecorator('picture', {
+                    <Form.Item label={t('modals.stock.form.pictures.label')} extra={t('modals.stock.form.pictures.description')}>
                             valuePropName: 'fileList',
                             getValueFromEvent: this.normFile,
                         })(
@@ -138,15 +142,15 @@ class CpanelStocksFormModalContainer extends Component {
                                 {
                                     this.state.pictureFileList.length >= 9
                                         ? null
-                                        : (<Button>เรียกดู</Button> )
-                                }                                
+                                        : (<Button><Icon type="upload" /> {t('modals.stock.form.pictures.button.select')}</Button> )
+                                }
                             </Upload>
                         )}
                     </Form.Item>
                     {
                         editMode
                         ? (
-                            <Form.Item label="แสดงเป็นสาธารณะ">
+                            <Form.Item label={t('modals.stock.form.is_visible.label')}>
                                 {getFieldDecorator('is_visible', {
                                     initialValue: data.is_visible,
                                     valuePropName: 'checked'
@@ -158,7 +162,7 @@ class CpanelStocksFormModalContainer extends Component {
                 </Form>
             </Modal>
         )
-    } 
+    }
 }
 
 const CpanelStocksFormModalFormWrappper = Form.create({name: 'frm-stock_category-info'})(CpanelStocksFormModalContainer)
@@ -174,6 +178,7 @@ const mapDispatchToProps = dispatch => ({
     openCpanelStocksFormModal: isOpen => dispatch(openCpanelStocksFormModal(isOpen)),
 })
 
-const CpanelStocksFormModal = connect(mapStateToProps, mapDispatchToProps)(CpanelStocksFormModalFormWrappper)
+const CpanelStocksFormModalTranslation = withTranslation()(CpanelStocksFormModalFormWrappper)
+const CpanelStocksFormModal = connect(mapStateToProps, mapDispatchToProps)(CpanelStocksFormModalTranslation)
 
 export default CpanelStocksFormModal;

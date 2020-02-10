@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Button, Icon } from 'antd'
 import Axios from 'axios'
 
@@ -37,12 +38,12 @@ class EditStockCategoryButtonContainer extends Component {
     }
 
     render() {
-        const { object_id } = this.props
+        const {t, object_id } = this.props
 
         return (
-            <Button loading={this.state.isLoading} icon="edit" onClick={this.onClickHandler} data-object_id={object_id}>แก้ไข</Button>
+            <Button loading={this.state.isLoading} icon="edit" onClick={this.onClickHandler} data-object_id={object_id}>{t('pages.cpanel_stockcategories.content.list.buttons.edit')}</Button>
         )
-    } 
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +51,8 @@ const mapDispatchToProps = dispatch => ({
     openStockCategoryForm: isOpen => dispatch(openStockCategoryModalForm(isOpen))
 })
 
-const EditStockCategoryButton = connect(null, mapDispatchToProps)(EditStockCategoryButtonContainer)
+const EditStockCategoryButtonWithTranslation = withTranslation()(EditStockCategoryButtonContainer)
+const EditStockCategoryButton = connect(null, mapDispatchToProps)(EditStockCategoryButtonWithTranslation)
 
 export default EditStockCategoryButton
 

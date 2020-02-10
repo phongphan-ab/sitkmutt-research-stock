@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
-import { Button, Empty, Icon, List, Result, Spin, Tooltip } from 'antd'
 import { connect }  from 'react-redux'
+import { withTranslation } from 'react-i18next'
+import { Button, Empty, Icon, List, Result, Spin, Tooltip } from 'antd'
 
 import { DeleteStockLocationButton, EditStockLocationButton, StockLocationFormModal } from '~/components'
 import DefaultLayout from '~/layouts'
 import { fetchStockLocations, openStockLocationFormModal } from '~/scripts/redux/actions'
 
-class StockLocationsPageContainer extends Component {   
+class StockLocationsPageContainer extends Component {
 
     componentDidMount() {
         this.props.dispatch(fetchStockLocations())
     }
 
     render() {
-        const { stockLocations, isStockLocationsFormModalOpen, dispatch } = this.props
+        const {t, stockLocations, isStockLocationsFormModalOpen, dispatch } = this.props
 
         let content
         if (stockLocations.data && stockLocations.data.length > 0 && !stockLocations.error) {
@@ -28,7 +29,7 @@ class StockLocationsPageContainer extends Component {
                                 ]}
                             >
                                 <List.Item.Meta
-                                    title={<>{item.title}{!item.is_visible ? (<Tooltip title="ถูกซ่อนไว้">&nbsp;<Icon type="disconnect" /></Tooltip>) : ''}</>}
+                                    title={<>{item.title}{!item.is_visible ? (<Tooltip title={t('pages.cpanel_stocklocations.content.list.hidden')}>&nbsp;<Icon type="disconnect" /></Tooltip>) : ''}</>}
                                     description={item.description}
                                 />
                             </List.Item>
@@ -41,27 +42,27 @@ class StockLocationsPageContainer extends Component {
             content = (
                 <Result
                     status="error"
-                    title="พบข้อผิดพลาด"
+                    title={t('pages.cpanel_stocklocations.result.error.title')}
                     subTitle={(
                         <>
-                            เกิดข้อผิดพลาดขณะโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง<br />
-                            <small>(รหัสข้อผิดพลาด: {stockCategories.error.response.status})</small>
+                            {t('pages.cpanel_stocklocations.result.error.description')}<br />
+                            <small>({t('pages.cpanel_stocklocations.result.error.http_error_code', {code: stockCategories.error.response.status})})</small>
                         </>
                     )}
                 />
             )
         }
         else {
-            content = (<Empty description="ยังไม่มีสถานที่เก็บพัสดุ กด &quot;เพิ่ม&quot; เพื่อเพิ่มสถานที่เก็บพัสดุ"/>)
+            content = (<Empty description={t('pages.cpanel_stocklocations.result.empty.description')}/>)
         }
 
         return (
-            <DefaultLayout title="สถานที่เก็บพัสดุ"
+            <DefaultLayout title={t('pages.cpanel_stocklocations.title')}
                 operationBtn={
-                    <Button type="primary" onClick={() => dispatch(openStockLocationFormModal(true))}>เพิ่ม</Button>
+                    <Button type="primary" onClick={() => dispatch(openStockLocationFormModal(true))}>{t('pages.cpanel_stocklocations.actions.button.add')}</Button>
                 }
             >
-                <Spin tip="กำลังโหลด..." spinning={stockLocations.loading}>
+                <Spin tip={t('pages.cpanel_stocklocations.result.loading.title')} spinning={stockLocations.loading}>
                     {content}
                 </Spin>
                 <StockLocationFormModal visible={isStockLocationsFormModalOpen} />
@@ -75,6 +76,7 @@ const mapStateToProps = state => ({
     stockLocations: state.stockLocations
 })
 
-const StockLocationsPage = connect(mapStateToProps)(StockLocationsPageContainer)
+const StockLocationsPageWithTranslation = withTranslation()(StockLocationsPageContainer)
+const StockLocationsPage = connect(mapStateToProps)(StockLocationsPageWithTranslation)
 
 export default StockLocationsPage
