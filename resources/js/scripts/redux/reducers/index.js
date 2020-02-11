@@ -6,8 +6,9 @@ import cpanelStockCategoryAddingModal from './cpanelStockCategoryAddingReducer'
 import cpanelStockModifyingItem from './cpanelStockItemModifyingReducer'
 import cpanelStockLocationFormModal from './cpanelStockLocationFormModalReducer'
 import cpanelStocksFormModal from './cpanelStocksFormModalReducer'
-import frmLoginLoading from './frmLoginLoadingReducer'
 import cpanelStocks from './cpanelStocksFetchingReducer'
+import frmLoginLoading from './frmLoginLoadingReducer'
+import languageChangeModal from './languageChangeModaReducer'
 import stockCategories from './stockCategoriesFetchingReducer'
 import stockCategoriesModifyItem from  './stockCategoryModifyItemReducer'
 import stockLocationModifyItem from  './stockLocationModifyItemReducer'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     cpanelStocksFormModal,
     cpanelStocks,
     frmLoginLoading,
+    languageChangeModal,
     stockCategories,
     stockLocations,
     stockCategoriesModifyItem,
