@@ -14,15 +14,18 @@
             }
         },
         "sider": {
-            "stock_categories": "แค็ตตาล็อกพัสดุ",
-            "control_panel": "แผงควบคุม",
-            "control_panels": {
-                "users": "ผู้ใช้",
-                "stocks": "พัสดุ",
-                "stock_categories": "ประเภทพัสดุ",
-                "stock_locations": "สถานที่เก็บพัสดุ",
-                "requests": "คำขอ",
-                "reports": "รายงาน"
+            "title": "เมนู",
+            "menus": {
+                "stock_categories": "แค็ตตาล็อกพัสดุ",
+                "control_panel": "แผงควบคุม",
+                "control_panels": {
+                    "users": "ผู้ใช้",
+                    "stocks": "พัสดุ",
+                    "stock_categories": "ประเภทพัสดุ",
+                    "stock_locations": "สถานที่เก็บพัสดุ",
+                    "requests": "คำขอ",
+                    "reports": "รายงาน"
+                }
             }
         },
         "pages": {
