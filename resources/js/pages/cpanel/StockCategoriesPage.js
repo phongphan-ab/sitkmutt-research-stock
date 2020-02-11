@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect }  from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { Button, Empty, Icon, List, Result, Spin, Tooltip } from 'antd'
-import { connect }  from 'react-redux'
 
 import { DeleteStockCategoryButton, EditStockCategoryButton, StockCategoryFormModal } from '~/components'
 import DefaultLayout from '~/layouts'
@@ -47,6 +46,11 @@ class StockCategoriesPageContainer extends Component {
                     subTitle={(
                         <>
                             {t('pages.cpanel_stockcategories.result.error.description')}<br />
+                            {
+                                stockCategories.error.response
+                                ? (<small>({t('pages.cpanel_stockcategories.result.error.http_error_code', {code: stockCategories.error.response.status})})</small>)
+                                : null
+                            }
                         </>
                     )}
                 />

@@ -89,8 +89,7 @@ class DeleteStockLocationButtonContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    stockLocations: state.stockLocations,
-    
+    stockLocations: state.stockLocations
 })
 
 const mapDispatchToProps = (dispatch) => ({

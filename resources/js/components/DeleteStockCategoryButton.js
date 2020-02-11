@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Button, Icon, message, Popconfirm, Tooltip } from 'antd'
 import Axios from 'axios'
 
@@ -87,8 +88,7 @@ class DeleteStockCategoryButtonContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    stockCategories: state.stockCategories,
-    
+    stockCategories: state.stockCategories
 })
 
 const mapDispatchToProps = (dispatch) => ({

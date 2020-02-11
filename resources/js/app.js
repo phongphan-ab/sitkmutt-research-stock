@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { I18nextProvider } from 'react-i18next';
 
+import { store } from './scripts/redux'
 import i18next from './scripts/i18next'
 import './bootstrap'
 import { IndexPage, LoginPage, StocksPage, StockCategoriesPage, StockLocationsPage } from './pages'
-import { store } from './scripts/redux';
 
 
 const GlobalStyle = createGlobalStyle`

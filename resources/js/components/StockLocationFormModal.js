@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { Form, Modal, Input, message, Switch } from 'antd'
-import { cancelStockLocationItemEditing, fetchStockLocationsSuccess, openStockLocationFormModal } from '~/scripts/redux/actions'
 import Axios from 'axios'
 
 import { ErrorModal } from '~/components'
+import { cancelStockLocationItemEditing, fetchStockLocationsSuccess, openStockLocationFormModal } from '~/scripts/redux/actions'
 
 const { TextArea } = Input;
 
@@ -18,14 +18,15 @@ class StockLocationFormModalContainer extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        let data = nextProps.stockLocationModifyItem.data;
+    static getDerivedStateFromProps(props, state) {
+        let data = props.stockLocationModifyItem.data;
 
         if (data) {
-            this.setState({
+            return {
                 editPrevention: data.edit_prevention
-            })
+            }
         }
+        return null;
     }
 
     onOkHandler = e => {

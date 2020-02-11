@@ -1,9 +1,13 @@
 import Axios from "axios";
 
-export const fetchCpanelStocks = () => (
-    dispatch => {
+export const fetchCpanelStocks = (pagination) => {
+    return (dispatch) => {
         dispatch(fetchCpanelStocksBegin())
-        return Axios.get('/stocks')
+        return Axios.get('/stocks', {
+            params: {
+                page: pagination ? pagination.current : 1
+            }
+        })
             .then(response => {
                 dispatch(fetchCpanelStocksSuccess(response.data))
             })
@@ -11,16 +15,12 @@ export const fetchCpanelStocks = () => (
                 dispatch(fetchCpanelStocksFailure(error))
             })
     }
-)
+}
 export const fetchCpanelStocksBegin = () => ({
     type: 'FETCH_CPANEL_STOCKS_BEGIN'
 });
 
-export const fetchCpanelStocksSuccess = data => {
-    data.sort((a,b) => {
-        return a.title.localeCompare(b.title)
-    })
-    
+export const fetchCpanelStocksSuccess = (data) => {
     return {
         type: 'FETCH_CPANEL_STOCKS_SUCCESS',
         payload: { data }

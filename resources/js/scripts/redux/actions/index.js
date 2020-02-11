@@ -4,10 +4,11 @@ import { openCpanelStocksFormModal } from './cpanelStocksFormModalAction'
 import { openStockCategoryModalForm } from './cpanelStockCategoryAddingAction'
 import { openStockLocationFormModal } from './cpanelStockLocationFormModalAction'
 import { cancelStockItemEditing,  editStockItem, deleteStockItem } from './cpanelStockModifyingItemAction'
-import { fetchCpanelStocks } from './fetchCpanelStocksAction'
+import { fetchCpanelStocks, fetchCpanelStocksSuccess } from './fetchCpanelStocksAction'
 import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockCategoriesAction'
 import { fetchStockLocations, fetchStockLocationsSuccess } from './fetchStockLocationsAction'
 import { frmLoginLoading } from './frmLoginLoadingAction'
+import { openLanguageChangeModal }  from './languageChangeModalAction'
 import { cancelStockCategoryItemEditing,  editStockCategoryItem, deleteStockCategoryItem } from './stockCategoriesModifyItemAction'
 import { cancelStockLocationItemEditing,  editStockLocationItem, deleteStockLocationItem } from './stockLocationModifyItemAction'
 
@@ -25,11 +26,13 @@ export {
     editStockItem,
     frmLoginLoading,
     fetchCpanelStocks,
+    fetchCpanelStocksSuccess,
     fetchStockCategories,
     fetchStockCategoriesSuccess,
     fetchStockLocations,
     fetchStockLocationsSuccess,
     openCpanelStocksFormModal,
+    openLanguageChangeModal,
     openStockCategoryModalForm,
     openStockLocationFormModal
 }

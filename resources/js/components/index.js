@@ -5,6 +5,7 @@ import DrawerMenu from './DrawerMenu'
 import EditStockCategoryButton from './EditStockCategoryButton'
 import EditStockLocationButton from './EditStockLocationButton'
 import ErrorModal from './ErrorModal'
+import LanguageChangeModal from './LanguageChangeModal'
 import NavbarSearchBox from './NavbarSearchBox'
 import SiderMenu from './SiderMenu'
 import StockCategoryFormModal from './StockCategoryFormModal'
@@ -18,6 +19,7 @@ export {
     EditStockCategoryButton,
     EditStockLocationButton,
     ErrorModal,
+    LanguageChangeModal,
     NavbarSearchBox,
     SiderMenu,
     StockCategoryFormModal,

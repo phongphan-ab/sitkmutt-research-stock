@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next';
 import { Form, Modal, Input, message, Switch } from 'antd'
-import { cancelStockCategoryItemEditing, fetchStockCategoriesSuccess, openStockCategoryModalForm } from '~/scripts/redux/actions'
 import Axios from 'axios'
 
 import { ErrorModal } from '~/components'
+import { cancelStockCategoryItemEditing, fetchStockCategoriesSuccess, openStockCategoryModalForm } from '~/scripts/redux/actions'
 
 const { TextArea } = Input;
 

@@ -46,7 +46,11 @@ class StockLocationsPageContainer extends Component {
                     subTitle={(
                         <>
                             {t('pages.cpanel_stocklocations.result.error.description')}<br />
-                            <small>({t('pages.cpanel_stocklocations.result.error.http_error_code', {code: stockCategories.error.response.status})})</small>
+                            {
+                                stockLocations.error.response
+                                ? (<small>({t('pages.cpanel_stocklocations.result.error.http_error_code', {code: stockLocations.error.response.status})})</small>)
+                                : null
+                            }
                         </>
                     )}
                 />
