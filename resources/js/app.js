@@ -10,7 +10,6 @@ import './bootstrap'
 import { IndexPage, LoginPage, StocksPage, StockCategoriesPage, StockLocationsPage } from './pages'
 import { store } from './scripts/redux';
 
-window.axios.defaults.baseURL = '/api/'
 
 const GlobalStyle = createGlobalStyle`
     #app {
