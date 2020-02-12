@@ -21,6 +21,8 @@ class CreateStockTables extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->boolean('is_visible')->default(true);
+            $table->boolean('edit_prevention')->default(false);
+            $table->boolean('delete_prevention')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -33,7 +35,7 @@ class CreateStockTables extends Migration
             $table->unsignedInteger('category_id')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->boolean('is_visible')->default(true);
+            $table->boolean('is_visible')->default(true);        
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -50,7 +52,6 @@ class CreateStockTables extends Migration
             $table->uuid('object_id')->unique();
             $table->unsignedBigInteger('stock_id');
             $table->text('path');
-            $table->unsignedTinyInteger('order')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -65,6 +66,8 @@ class CreateStockTables extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->boolean('is_visible')->default(true);
+            $table->boolean('edit_prevention')->default(false);
+            $table->boolean('delete_prevention')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')

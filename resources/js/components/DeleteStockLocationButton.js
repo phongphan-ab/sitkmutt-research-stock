@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Button, Icon, message, Popconfirm } from 'antd'
+import { withTranslation } from 'react-i18next'
+import { Button, Icon, message, Popconfirm, Tooltip } from 'antd'
 import Axios from 'axios'
 
 import { ErrorModal } from '~/components'
@@ -24,6 +25,7 @@ class DeleteStockLocationButtonContainer extends Component {
 
     deleteConfirmationHandler = (e) => {
         const {
+            t,
             object_id,
             stockLocations,
             putStockLocationsDataToState,
@@ -39,7 +41,7 @@ class DeleteStockLocationButtonContainer extends Component {
                 let data = stockLocations.data
                 data = data.filter(item => item.object_id != object_id)
                 putStockLocationsDataToState(data)
-                message.success('ลบสถานที่เก็บพัสดุแล้ว')
+                message.success(t('pages.cpanel_stocklocations.content.list.buttons.delete.toast_success'))
             })
             .catch(error => {
                 ErrorModal(error)
@@ -53,22 +55,41 @@ class DeleteStockLocationButtonContainer extends Component {
     }
 
     render() {
-        const { object_id } = this.props
+        const { t, object_id, disabled } = this.props
+
+        const DeleteButton = (
+            <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockLocationsDeleting} onClick={this.onDeleteHandler} disabled={disabled} />
+        )
+
+        let ButtonWrapper = DeleteButton
+
+        if (disabled) {
+            ButtonWrapper = (
+                <Tooltip title={t('pages.cpanel_stocklocations.content.list.buttons.delete.tooltip.system_default')} placement="topRight">
+                    {DeleteButton}
+                </Tooltip>
+            )
+        }
 
         return (
-            <Popconfirm placement="left" okType="danger" okText="ลบ" cancelText="ยกเลิก" onConfirm={this.deleteConfirmationHandler} onCancel={null}
+            <Popconfirm
+                placement="left"
+                okType="danger"
+                okText={t('pages.cpanel_stocklocations.content.list.buttons.delete.popconfirm.buttons.ok')}
+                cancelText={t('pages.cpanel_stocklocations.content.list.buttons.delete.popconfirm.buttons.cancel')}
+                disabled={disabled} onConfirm={this.deleteConfirmationHandler}
+                onCancel={null}
                 icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
-                title={<>พัสดุที่อยู่ในสถานที่นี้จะถูกเปลี่ยนเป็นสถานที่ &quot;อื่น ๆ&quot;<br />คุณแน่ใจหรือไม่ที่จะลบสถานที่นี้ ?</>}
+                title={<div dangerouslySetInnerHTML={{__html: t('pages.cpanel_stocklocations.content.list.buttons.delete.popconfirm.description')}}></div>}
             >
-                <Button type="danger" icon="delete" ghost data-object_id={object_id} loading={this.state.isStockLocationsDeleting} onClick={this.onDeleteHandler} />
+                {ButtonWrapper}
             </Popconfirm>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    stockLocations: state.stockLocations,
-    
+    stockLocations: state.stockLocations
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,6 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
     putStockLocationsDataToState: (data) => dispatch(fetchStockLocationsSuccess(data)),
 })
 
-const DeleteStockLocationsButton = connect(mapStateToProps, mapDispatchToProps)(DeleteStockLocationButtonContainer)
+const DeleteStockLocationsButtonWithTranslation = withTranslation()(DeleteStockLocationButtonContainer)
+const DeleteStockLocationsButton = connect(mapStateToProps, mapDispatchToProps)(DeleteStockLocationsButtonWithTranslation)
 
 export default DeleteStockLocationsButton

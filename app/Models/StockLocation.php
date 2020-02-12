@@ -4,16 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Stock;
+use App\Models\StockSku;
 use App\Traits\HasUuid;
 
 class StockLocation extends Model
 {
     use HasUuid;
-
-    protected $primaryKey = 'object_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
     
     protected $fillable = [
         'title',
@@ -28,4 +24,8 @@ class StockLocation extends Model
     protected $casts = [
         'is_visible' => 'boolean',
     ];
+
+    public function stocks_skus() {
+        return $this->hasMany(StockSku::class, 'location_id');
+    }
 }

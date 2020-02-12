@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Button, Form, Icon, Input, Modal, message, Select, Switch, Upload } from 'antd'
+import Axios from 'axios'
+
+import { ErrorModal } from '~/components'
 import { cancelStockItemEditing, fetchStockCategoriesSuccess, openCpanelStocksFormModal, fetchStockCategories } from '~/scripts/redux/actions'
 
 const { TextArea } = Input;
@@ -9,7 +13,6 @@ class CpanelStocksFormModalContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            optionItem: null,
             okBtnLoading: false,
             pictureFileList: [],
             stockCategoryOptions: []
@@ -21,6 +24,68 @@ class CpanelStocksFormModalContainer extends Component {
         this.setState({
             stockCategoryOptions: this.mapStockCategoriesToOption(this.props.stockCategories.data)
         })
+    }
+
+    onOkHandler = e => {
+        const { t, form, stocks, putStockCategoriesData, openCpanelStocksFormModal, stockModifyingItem } = this.props
+        e.preventDefault()
+        form.validateFields(async (err, values) => {
+            if (!err) {
+                this.setState({okBtnLoading: true})
+
+                let {editMode, data} = stockModifyingItem
+                let formData = new FormData();
+
+                if (editMode) {
+                    formData.append('_method', 'PUT')
+                }
+                formData.append('title', values.title)
+                formData.append('category_id', values.category_id)
+                formData.append('description', values.description)
+
+                if (values.pictures) {
+                    values.pictures.map((item, idx) => {
+                        let file = item
+                        formData.append(`pictures[${idx}]`, file.originFileObj)
+                    })
+                }
+                else {
+                    formData.append(`picture[]`, null);
+                }
+
+                let url = editMode ? `/stocks/${data.data.object_id}` :   '/stocks'
+                await Axios({
+                    method: 'post',
+                    url: url,
+                    data: formData,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(response => {
+        //                 let list = stockCategories.data
+
+                        if (editMode) {
+        //                     let index = list.findIndex(item => item.object_id == data.object_id)
+        //                     values.object_id = data.object_id
+        //                     list[index] = values
+                            message.success(t('modal.stock.toast.success', {context: 'edit'}))
+                        }
+                        else {
+        //                     list.push(response.data)
+                            message.success(t('modal.stock.toast.success', {context: 'add'}))
+                        }
+
+        //                 putStockCategoriesData(list)
+                        openCpanelStocksFormModal(false)
+                        form.resetFields()
+                    })
+                    .catch((error) => {(
+                        ErrorModal(error)
+                    )})
+            }
+            this.setState({okBtnLoading: false})
+        });
     }
 
     onCancelHandler = () => {
@@ -38,13 +103,14 @@ class CpanelStocksFormModalContainer extends Component {
     }
 
     beforeUpload = (file, fileList) => {
+        const { t } = this.props
         if (fileList.length + this.state.pictureFileList.length > 9) {
             Modal.error({
-                title: 'เกินจำนวนที่จำกัดไว้แล้ว',
+                title: t('modal.alert.picture_amount_exceeded.title'),
                 content: <p>
-                    จำนวนไฟล์ที่คุณเพิ่งเลือกกับไฟล์ที่เลือกก่อนหน้าเกินจำนวนสูงสุดที่สามารถอัปโหลดได้แล้ว
+                    {t('modal.alert.picture_amount_exceeded.description')}
                 </p>,
-                okText: 'ตกลง'
+                okText: t('modal.alert.picture_amount_exceeded.ok_text')
             })
         }
         else {
@@ -73,7 +139,7 @@ class CpanelStocksFormModalContainer extends Component {
     }
 
     render() {
-        let { visible, form, stockModifyingItem } = this.props
+        let { t, visible, form, stockModifyingItem } = this.props
         let { editMode, data } = stockModifyingItem
         const { getFieldDecorator } = form
         const { Option } = Select
@@ -89,66 +155,77 @@ class CpanelStocksFormModalContainer extends Component {
             },
         };
 
+        let fileList = editMode
+            ? data.data.pictures.map(item => ({
+                uid: item.object_id,
+                status: 'done',
+                url: item.url
+            }))
+            : []
+
         return (
-            <Modal title={ editMode ? 'แก้ไขพัสดุ' : 'เพิ่มพัสดุ' } okText={ editMode ? 'แก้ไข' : 'เพิ่ม' } cancelText="ยกเลิก"
+            <Modal
+                title={t('modals.stock.title', {context: editMode ? 'edit' : 'add'})}
+                okText={t('modals.stock.button.ok', {context: editMode ? 'edit' : 'add'})}
+                cancelText={t('modals.stock.button.cancel')}
                 visible={visible}
                 onOk={this.onOkHandler}
                 onCancel={this.onCancelHandler}
                 confirmLoading={this.state.okBtnLoading}
             >
                 <Form {...formItemLayout}>
-                    <Form.Item label="ชื่อพัสดุ">
+                    <Form.Item label={t('modals.stock.form.title.label')}>
                         {getFieldDecorator('title', {
-                            initialValue: editMode ? data.title : '',
+                            initialValue: editMode ? data.data.title : '',
                             rules: [
                                 {
                                     required: true,
-                                    message: 'โปรดป้อนชื่อพัสดุ',
+                                    message: t('modals.stock.form.title.validation.required'),
                                 },
                             ],
                         })(<Input />)}
                     </Form.Item>
-                    <Form.Item label="หมวดหมู่">
+                    <Form.Item label={t('modals.stock.form.category.label')}>
                         {getFieldDecorator('category_id', {
-                            initialValue: editMode ? data.description : '',
+                            initialValue: editMode ? data.data.category.object_id : '',
                             rules: [
                                 {
                                     required: true,
-                                    message: 'โปรดเลือกหมวดหมู่ของพัสดุนี้',
+                                    message: t('modals.stock.form.category.validation.required'),
                                 },
                             ]
                         })(
-                            <Select showSearch placeholder="โปรดเลือก..." filterOption={this.searchFilterAlgorithm}>
+                            <Select showSearch placeholder={t('modals.stock.form.category.placeholder')} filterOption={this.searchFilterAlgorithm}>
                                 {this.state.stockCategoryOptions}
-                                <Option key="null" value="null">อื่น ๆ</Option>
                             </Select>
                         )}
                     </Form.Item>
-                    <Form.Item label="คำอธิบาย">
+                    <Form.Item label={t('modals.stock.form.description.label')}>
                         {getFieldDecorator('description', {
-                            initialValue: editMode ? data.description : '',
+                            initialValue: editMode ? data.data.description : '',
                         })(<TextArea row={3} />)}
                     </Form.Item>
-                    <Form.Item label="รูปภาพพัสดุ">
-                        {getFieldDecorator('picture', {
+                    <Form.Item label={t('modals.stock.form.pictures.label')} extra={t('modals.stock.form.pictures.description')}>
+                        {getFieldDecorator('pictures', {
+                            initialValue: fileList,
                             valuePropName: 'fileList',
                             getValueFromEvent: this.normFile,
                         })(
-                            <Upload name="files" listType="picture" beforeUpload={this.beforeUpload} onRemove={this.pictureUploadRemovingHandler}>
+                            <Upload accept="image/jpeg, image/gif, image/png, image/bmp" listType="picture" beforeUpload={this.beforeUpload} onRemove={this.pictureUploadRemovingHandler}>
                                 {
                                     this.state.pictureFileList.length >= 9
                                         ? null
-                                        : (<Button>เรียกดู</Button> )
-                                }                                
+                                        : (<Button><Icon type="upload" /> {t('modals.stock.form.pictures.button.select')}</Button> )
+                                }
                             </Upload>
                         )}
                     </Form.Item>
                     {
                         editMode
                         ? (
-                            <Form.Item label="แสดงเป็นสาธารณะ">
+                            <Form.Item label={t('modals.stock.form.is_visible.label')}>
                                 {getFieldDecorator('is_visible', {
-                                    initialValue: data.is_visible,
+                                    initialValue: data.data.is_visible,
                                     valuePropName: 'checked'
                                 })(<Switch />)}
                             </Form.Item>
@@ -158,22 +235,26 @@ class CpanelStocksFormModalContainer extends Component {
                 </Form>
             </Modal>
         )
-    } 
+    }
 }
 
-const CpanelStocksFormModalFormWrappper = Form.create({name: 'frm-stock_category-info'})(CpanelStocksFormModalContainer)
+const CpanelStocksFormModalFormWrappper = Form.create({name: 'frm-stock-info'})(CpanelStocksFormModalContainer)
 
 const mapStateToProps = state => ({
+    isStockCategoryAddingModalConfirmLoading: state.cpanelStockCategoryModalConfirmLoading,
     stockCategories: state.stockCategories,
+    stocks: state.stocks,
     stockModifyingItem: state.cpanelStockModifyingItem
 })
 
 const mapDispatchToProps = dispatch => ({
+    cpanelStocksFormModal: isOpen => dispatch(openCpanelStocksFormModal(isOpen)),
     cancelStockEditing: () => dispatch(cancelStockItemEditing()),
     fetchStockCategories: () => dispatch(fetchStockCategories()),
     openCpanelStocksFormModal: isOpen => dispatch(openCpanelStocksFormModal(isOpen)),
 })
 
-const CpanelStocksFormModal = connect(mapStateToProps, mapDispatchToProps)(CpanelStocksFormModalFormWrappper)
+const CpanelStocksFormModalTranslation = withTranslation()(CpanelStocksFormModalFormWrappper)
+const CpanelStocksFormModal = connect(mapStateToProps, mapDispatchToProps)(CpanelStocksFormModalTranslation)
 
 export default CpanelStocksFormModal;

@@ -1,6 +1,11 @@
 const initialState = {
     error: null,
     data: null,
+    pagination: {
+        current: 1,
+        defaultCurrent: 1,
+        total: 0,
+    },
     loading: false
 } 
 
@@ -17,6 +22,11 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
+                pagination: payload.data ? {
+                    pageSize: payload.data.meta.per_page,
+                    current: payload.data.meta.current_page,
+                    total: payload.data.meta.total
+                } : null,
                 data: payload.data
             };
 

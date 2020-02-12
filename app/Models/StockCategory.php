@@ -4,16 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Stock;
+use App\Models\Stock;
 use App\Traits\HasUuid;
 
 class StockCategory extends Model
 {
     use HasUuid;
-
-    protected $primaryKey = 'object_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
     
     protected $fillable = [
         'title',
@@ -31,6 +27,6 @@ class StockCategory extends Model
 
 
     public function stocks() {
-        return $this->hasMany(Stock::class);
+        return $this->hasMany(Stock::class, 'category_id');
     }
 }
