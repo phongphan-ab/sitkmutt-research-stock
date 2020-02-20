@@ -234,8 +234,8 @@
                     }
                 },
                 "toast": {
-                    "success_add:": "สร้างพัสดุแล้ว",
-                    "success_edit:": "แก้ไขพัสดุแล้ว"
+                    "success_add": "สร้างพัสดุแล้ว",
+                    "success_edit": "แก้ไขพัสดุแล้ว"
                 }
             },
             "stock_category": {

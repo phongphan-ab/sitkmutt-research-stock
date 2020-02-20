@@ -234,8 +234,8 @@
                     }
                 },
                 "toast": {
-                    "success_add:": "Stock created.",
-                    "success_edit:": "Stock created."
+                    "success_add": "Stock created.",
+                    "success_edit": "Stock created."
                 }
             },
             "stock_category": {

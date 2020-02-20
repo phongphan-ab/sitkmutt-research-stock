@@ -69,11 +69,11 @@ class CpanelStocksFormModalContainer extends Component {
         //                     let index = list.findIndex(item => item.object_id == data.object_id)
         //                     values.object_id = data.object_id
         //                     list[index] = values
-                            message.success(t('modal.stock.toast.success', {context: 'edit'}))
+                            message.success(t('modals.stock.toast.success', {context: 'edit'}))
                         }
                         else {
         //                     list.push(response.data)
-                            message.success(t('modal.stock.toast.success', {context: 'add'}))
+                            message.success(t('modals.stock.toast.success', {context: 'add'}))
                         }
 
         //                 putStockCategoriesData(list)
