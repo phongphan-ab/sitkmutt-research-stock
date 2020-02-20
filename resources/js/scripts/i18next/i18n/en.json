@@ -12,11 +12,6 @@
                     "logout": "Log Out"
                 }
             }
-            "cpanel_stocks": {
-                "": {
-
-                }
-            }
         },
         "sider": {
             "title": "Menus",
@@ -119,8 +114,54 @@
                 }
             },
             "cpanel_stocks": {
-                "": {
-
+                "title": "Stock",
+                "action": {
+                    "buttons": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "name": "Title",
+                            "category": "Category",
+                            "total_amount": "Total",
+                            "borrowed_amount": "Borrowed Amount",
+                            "discarded_amount": "Discarded Amount",
+                            "remaining_anmount": "Remaining Amount",
+                            "actions": "Actions"
+                        },
+                        "body": {
+                            "actions": {
+                                "title": "Options",
+                                "dropdown": {
+                                    "edit": "Edit",
+                                    "delete": {
+                                        "title": "Delete",
+                                        "alert": {
+                                            "title": "Are you sure ?",
+                                            "description": "This opreation cannot be undone ! Are you sure to remove {{stock_name}} ?",
+                                            "buttons": {
+                                                "ok": "Delete",
+                                                "cancel": "Cancel"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "empty": {
+                        "description": "No stock available yet. Press \"Add\" to add it."
+                    },
+                    "error": {
+                        "title": "Error Occurred",
+                        "description": "An error occurred while loading data. Please refresh this page or try again later.",
+                        "http_error_code": "Error Code: HTTP {{code}}"
+                    }
                 }
             },
             "login": {

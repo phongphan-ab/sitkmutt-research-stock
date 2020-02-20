@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect }  from 'react-redux'
+import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button, Divider, Dropdown, Empty, Icon, Menu, Modal, Result, Spin, Table, Tooltip, Typography } from 'antd'
 import Axios from 'axios'
@@ -37,11 +38,11 @@ class StocksPageContainer extends Component {
     }
 
     render() {
-        const { stocks, isCpanelStocksFormModalOpen } = this.props
+        const { t, stocks, isCpanelStocksFormModalOpen } = this.props
 
         let columns = [
             {
-                title: 'ID',
+                title: t('pages.cpanel_stocks.content.table.header.id'),
                 key: 'id',
                 ellipsis: true,
                 sorter: true,
@@ -49,47 +50,47 @@ class StocksPageContainer extends Component {
                 render: (data) => <Link to={`/cpanel/stocks/${data.object_id}`}>{data.object_id}</Link>
             },
             {
-                title: 'ชื่อพัสดุ',
+                title: t('pages.cpanel_stocks.content.table.header.name'),
                 key: 'title',
                 render: (data) => <>{data.title} {!data.is_visible ? (<Tooltip title="ถูกซ่อนไว้">&nbsp;<Icon type="disconnect" /></Tooltip>) : null}</>
             },
             {
-                title: 'หมวดหมู่',
+                title: t('pages.cpanel_stocks.content.table.header.category'),
                 key: 'category',
                 render: (data) => <>{data.category.title}</>
             },
             {
-                title: 'จำนวนทั้งหมด',
+                title: t('pages.cpanel_stocks.content.table.header.total_amount'),
                 key: 'amount_all',
                 width: 100
             },
             {
-                title: 'จำนวนที่ถูกยืม',
+                title: t('pages.cpanel_stocks.content.table.header.borrowed_amount'),
                 key: 'amount_borrowed',
                 width: 100
             },
             {
-                title: 'จำนวนที่ถูกจำหน่าย',
+                title: t('pages.cpanel_stocks.content.table.header.discarded_amount'),
                 key: 'amount_discarded',
                 width: 100
             },
             {
-                title: 'จำนวนที่คงเหลือ',
+                title: t('pages.cpanel_stocks.content.table.header.remaining_anmount'),
                 key: 'amount_remaining',
                 width: 100
             },
             {
-                title: 'การกระทำ',
+                title: t('pages.cpanel_stocks.content.table.header.actions'),
                 width: 96,
                 render: (data) => {
                     let deleting = false
                     let deleteConfirm = () => {
                         confirm({
-                            title: 'แน่ใจหรือไม่ ?',
-                            content: `การดำเนินการนี้จะไม่สามารถเลิกทำได้ คุณแน่ใจหรือไม่ที่จะลบพัสดุ ${data.title} ?`,
-                            okText: 'ลบ',
+                            title: t('pages.cpanel_stocks.content.table.body.actions.dropdown.delete.alert.title'),
+                            content: t('pages.cpanel_stocks.content.table.body.actions.dropdown.delete.alert.description', {stock_name: data.title}),
+                            okText: t('pages.cpanel_stocks.content.table.body.actions.dropdown.delete.alert.buttons.ok'),
                             okType: 'danger',
-                            cancelText: 'ยกเลิก',
+                            cancelText: t('pages.cpanel_stocks.content.table.body.actions.dropdown.delete.alert.buttons.cancel'),
                             cancelButtonProps: {
                                 disabled: deleting
                             },
@@ -140,17 +141,17 @@ class StocksPageContainer extends Component {
                     let menu = (
                         <Menu>
                             <Menu.Item onClick={editMenuOnClickHandler} key={data.object_id}>
-                                <a><Icon type="edit" /> แก้ไข</a>
+                                <a><Icon type="edit" /> {t('pages.cpanel_stocks.content.table.body.actions.dropdown.edit')}</a>
                             </Menu.Item>
                             <Menu.Item onClick={deleteConfirm}>
-                                <a><Text type="danger"><Icon type="delete" /> ลบ</Text></a>
+                                <a><Text type="danger"><Icon type="delete" /> {t('pages.cpanel_stocks.content.table.body.actions.dropdown.delete.title')}</Text></a>
                             </Menu.Item>
                         </Menu>
                     )
 
                     return (<>
                         <Dropdown overlay={menu} trigger={['click']}>
-                            <a><Icon type="more" />ตัวเลือก</a>
+                            <a><Icon type="more" />{t('pages.cpanel_stocks.content.table.body.actions.title')}</a>
                         </Dropdown>
                     </>)
                 }
@@ -165,25 +166,25 @@ class StocksPageContainer extends Component {
             emptyText: () => {
                 if (stocks.error) {
                     console.log(stocks.error)
-                    return <Result status="error" title="พบข้อผิดพลาด"
+                    return <Result status="error" title={t('pages.cpanel_stocks.result.error.title')}
                         subTitle={(
                             <>
-                                เกิดข้อผิดพลาดขณะโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง<br />
-                                {stocks.error.response ? <small>(รหัสข้อผิดพลาด: {stocks.error.response.status})</small> : null}
+                                {t('pages.cpanel_stocks.result.error.description')}<br />
+                                {stocks.error.response ? <small>({t('pages.cpanel_stocks.result.error.http_error_code', {code: stocks.error.response.status})})</small> : null}
                             </>
                         )}
                     />
                 }
-                return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="ไม่มีข้อมูล" />
+                return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t('pages.cpanel_stocks.result.empty.description')} />
             }
         }
 
         return (
             <>
                 <Spin size="large" spinning={this.state.editModalLoading}>
-                    <DefaultLayout title="พัสดุ"
+                    <DefaultLayout title={t('pages.cpanel_stocks.title')}
                         operationBtn={
-                            <Button type="primary" loading={this.state.addButtonLoading} onClick={this.addStockButtonHandler}>เพิ่ม</Button>
+                            <Button type="primary" loading={this.state.addButtonLoading} onClick={this.addStockButtonHandler}>{t('pages.cpanel_stocks.action.buttons.add')}</Button>
                         }
                     >
                         <Table dataSource={stocks.data ? stocks.data.data : null} columns={columns} rowKey={rowKey} loading={stocks.loading} locale={tableLocale} pagination={stocks.pagination} onChange={this.onTableChangeHandler}/>
@@ -209,6 +210,7 @@ const mapDispatchToProps = dispatch => ({
     editStockItem: data => dispatch(editStockItem(data))
 })
 
-const StocksPage = connect(mapStateToProps, mapDispatchToProps)(StocksPageContainer)
+const StocksPageWithTranslation = withTranslation()(StocksPageContainer)
+const StocksPage = connect(mapStateToProps, mapDispatchToProps)(StocksPageWithTranslation)
 
 export default StocksPage
