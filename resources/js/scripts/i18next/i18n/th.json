@@ -113,6 +113,57 @@
                     }
                 }
             },
+            "cpanel_stocks": {
+                "title": "พัสดุ",
+                "action": {
+                    "buttons": {
+                        "add": "เพิ่ม"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "name": "ชื่อพัสดุ",
+                            "category": "หมวดหมู่",
+                            "total_amount": "จำนวนทั้งหมด",
+                            "borrowed_amount": "จำนวนที่ถูกยืม",
+                            "discarded_amount": "จำนวนที่ถูกจำหน่าย",
+                            "remaining_anmount": "จำนวนคงเหลือ",
+                            "actions": "การกระทำ"
+                        },
+                        "body": {
+                            "actions": {
+                                "title": "ตัวเลือก",
+                                "dropdown": {
+                                    "edit": "แก้ไข",
+                                    "delete": {
+                                        "title": "ลบ",
+                                        "alert": {
+                                            "title": "แน่ใจหรือไม่ ?",
+                                            "description": "การดำเนินการนี้จะไม่สามารถเลิกทำได้ คุณแน่ใจหรือไม่ที่จะลบพัสดุ {{stock_name}} ?",
+                                            "buttons": {
+                                                "ok": "ลบ",
+                                                "cancel": "ยกเลิก"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "empty": {
+                        "description": "ยังไม่มีพัสดุเลย กด \"เพิ่ม\" เพื่อเพิ่มสถานที่"
+                    },
+                    "error": {
+                        "title": "เกิดข้อผิดพลาด",
+                        "description": "ข้อผิดพลาดได้เกิดขึ้นขณะที่กำลังโหลดข้อมูล โปรดรีเฟรชหน้านี้ หรือลองอีกครั้งในภายหลัง",
+                        "http_error_code": "รหัสข้อผิดพลาด: HTTP {{code}}"
+                    }
+                }
+            },
             "login": {
                 "form": {
                     "username": {
@@ -183,8 +234,8 @@
                     }
                 },
                 "toast": {
-                    "success_add:": "สร้างพัสดุแล้ว",
-                    "success_edit:": "แก้ไขพัสดุแล้ว"
+                    "success_add": "สร้างพัสดุแล้ว",
+                    "success_edit": "แก้ไขพัสดุแล้ว"
                 }
             },
             "stock_category": {
