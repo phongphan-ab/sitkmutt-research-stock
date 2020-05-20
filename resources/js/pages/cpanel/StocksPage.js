@@ -12,7 +12,7 @@ import { editStockItem, fetchCpanelStocks, fetchCpanelStocksSuccess, openCpanelS
 const { Text } = Typography;
 const { confirm } = Modal;
 
-class StocksPageContainer extends Component {   
+class StocksPageContainer extends Component {
 
     constructor(props) {
         super(props)
