@@ -5,6 +5,7 @@ import antdSiderMenu from './antdSiderMenuReducer'
 import cpanelStockCategoryAddingModal from './cpanelStockCategoryAddingReducer'
 import cpanelStockModifyingItem from './cpanelStockItemModifyingReducer'
 import cpanelStockLocationFormModal from './cpanelStockLocationFormModalReducer'
+import cpanelStockSkuFormModal from './cpanelStockSkuFormModalReducer'
 import cpanelStocksFormModal from './cpanelStocksFormModalReducer'
 import cpanelStocks from './cpanelStocksFetchingReducer'
 import cpanelStockSkus from './cpanelStockSkusFetchingReducer'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     cpanelStockLocationFormModal,
     cpanelStockModifyingItem,
     cpanelStocksFormModal,
+    cpanelStockSkuFormModal,
     cpanelStocks,
     cpanelStockSkus,
     frmLoginLoading,
