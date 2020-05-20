@@ -8,7 +8,7 @@ import { I18nextProvider } from 'react-i18next';
 import { store } from './scripts/redux'
 import i18next from './scripts/i18next'
 import './bootstrap'
-import { IndexPage, LoginPage, StocksPage, StockCategoriesPage, StockLocationsPage } from './pages'
+import { IndexPage, LoginPage, StocksPage, StockCategoriesPage, StockByIdPage, StockLocationsPage } from './pages'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -29,6 +29,7 @@ const App = () => (
                 <Switch>
                     <Route exact path="/" component={IndexPage} />
                     <Route exect path="/login" component={LoginPage} />
+                    <Route exect path="/cpanel/stocks/:stock_id" component={StockByIdPage} />
                     <Route exect path="/cpanel/stocks" component={StocksPage} />
                     <Route exect path="/cpanel/stock_categories" component={StockCategoriesPage} />
                     <Route exect path="/cpanel/stock_locations" component={StockLocationsPage} />
