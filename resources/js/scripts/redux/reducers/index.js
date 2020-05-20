@@ -7,6 +7,7 @@ import cpanelStockModifyingItem from './cpanelStockItemModifyingReducer'
 import cpanelStockLocationFormModal from './cpanelStockLocationFormModalReducer'
 import cpanelStocksFormModal from './cpanelStocksFormModalReducer'
 import cpanelStocks from './cpanelStocksFetchingReducer'
+import cpanelStockSkus from './cpanelStockSkusFetchingReducer'
 import frmLoginLoading from './frmLoginLoadingReducer'
 import languageChangeModal from './languageChangeModalReducer'
 import stockCategories from './stockCategoriesFetchingReducer'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     cpanelStockModifyingItem,
     cpanelStocksFormModal,
     cpanelStocks,
+    cpanelStockSkus,
     frmLoginLoading,
     languageChangeModal,
     stockCategories,

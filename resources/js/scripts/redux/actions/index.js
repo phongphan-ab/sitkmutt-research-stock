@@ -5,6 +5,7 @@ import { openStockCategoryModalForm } from './cpanelStockCategoryAddingAction'
 import { openStockLocationFormModal } from './cpanelStockLocationFormModalAction'
 import { cancelStockItemEditing,  editStockItem, deleteStockItem } from './cpanelStockModifyingItemAction'
 import { fetchCpanelStocks, fetchCpanelStocksSuccess } from './fetchCpanelStocksAction'
+import { fetchCpanelStockSkus, fetchCpanelStockSkusSuccess } from './fetchCpanelStockSkusAction'
 import { fetchStockCategories, fetchStockCategoriesSuccess } from './fetchStockCategoriesAction'
 import { fetchStockLocations, fetchStockLocationsSuccess } from './fetchStockLocationsAction'
 import { frmLoginLoading } from './frmLoginLoadingAction'
@@ -27,6 +28,8 @@ export {
     frmLoginLoading,
     fetchCpanelStocks,
     fetchCpanelStocksSuccess,
+    fetchCpanelStockSkus,
+    fetchCpanelStockSkusSuccess,
     fetchStockCategories,
     fetchStockCategoriesSuccess,
     fetchStockLocations,
