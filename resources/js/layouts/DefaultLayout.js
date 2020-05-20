@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Avatar, Dropdown, Badge, Button, Divider, Icon, Layout, List, Menu, Modal, PageHeader, Popover, Typography } from 'antd'
+import { Avatar, Descriptions, Dropdown, Badge, Button, Divider, Icon, Layout, List, Menu, Modal, PageHeader, Popover, Typography } from 'antd'
 import styled from 'styled-components'
 import 'matchmedia-polyfill/matchMedia'
 import 'matchmedia-polyfill/matchMedia.addListener'
@@ -205,12 +205,22 @@ class DefaultLayoutWithoutRedux extends Component {
                                         title || operationBtn || breadcrumbData.length > 0
                                         ? (
                                             <div style={{ background: '#fff' }}>
-                                                <PageHeader title={title} breadcrumb={{breadcrumbData}}
+                                                <PageHeader title={title} subTitle={this.props.subtitle ? this.props.subtitle : null} breadcrumb={{breadcrumbData}}
                                                     style={{
                                                         padding: '16px'
                                                     }}
                                                     extra={operationBtn}
-                                                />
+                                                >
+                                                    {
+                                                        this.props.descriptionItems
+                                                        ? (
+                                                            <Descriptions size="small" column={3}>
+                                                                {this.props.descriptionItems}
+                                                            </Descriptions>
+                                                        )
+                                                        : null
+                                                    }
+                                                </PageHeader>
                                             </div>
                                         )
                                         : null
