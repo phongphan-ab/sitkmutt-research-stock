@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector }  from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { Form, DatePicker, Input, message, Modal, Select } from 'antd'
 import Axios from 'axios'
 import Moment from 'moment'
@@ -12,6 +13,7 @@ const CpanelStockSkuFormModalContent = ({form, visible, stock_id, stock_sku_id})
     const [ formDisabled, setFormDisabled] = useState(false)
     const stockLocationData = useSelector(state => state.stockLocations.data)
     const dispatch = useDispatch()
+    const { t } = useTranslation()
 
     useEffect(() => {
         dispatch(fetchStockLocations())
@@ -40,7 +42,7 @@ const CpanelStockSkuFormModalContent = ({form, visible, stock_id, stock_sku_id})
                 try {
                     values.received_at = Moment(values.received_at).format("YYYY-MM-DD HH:mm:ss")
                     let response = await Axios.post(`/stocks/${stock_id}/skus`, values)
-                    message.success("เพิ่มข้อมูลเรียบร้อยแล้ว")
+                    message.success(t("modals.stock_sku.success_text.add"))
                     form.resetFields()
                     setFormDisabled(false)
                     setModalLoading(false)
@@ -76,58 +78,58 @@ const CpanelStockSkuFormModalContent = ({form, visible, stock_id, stock_sku_id})
             }}
         >
             <Form {...formItemLayout}>
-                <Form.Item label="รหัสครุภัณฑ์" >
+                <Form.Item label={t("modals.stock_sku.form.code")} >
                     {getFieldDecorator('code', {
                         rules: [
                             {
                                 required: true,
-                                message: "โปรดป้อนรหัสครุภัณฑ์",
+                                message: t("modals.stock_sku.form.validation.code.required"),
                             },
                         ],
                     })(<Input disabled={formDisabled}/>)}
                 </Form.Item>
-                <Form.Item label="หมายเลขซีเรียล">
+                <Form.Item label={t("modals.stock_sku.form.serial_no")}>
                     {getFieldDecorator('serial_no', {})(<Input disabled={formDisabled}/>)}
                 </Form.Item>
-                <Form.Item label="คำอธิบาย">
+                <Form.Item label={t("modals.stock_sku.form.description")}>
                     {getFieldDecorator('description', {})(<TextArea row={3} disabled={formDisabled}/>)}
                 </Form.Item>
-                <Form.Item label="ราคา">
+                <Form.Item label={t("modals.stock_sku.form.price")}>
                     {getFieldDecorator('price', {
                         initialValue: 0.00,
                         rules: [
                             {
                                 pattern: /^[0-9]+(\.[0-9]{1,2})?$/,
-                                message: "โปรดป้อนราคาพัสดุที่ถูกต้อง",
+                                message: t("modals.stock_sku.form.validation.price.pattern"),
                             },
                         ],
                     })(<Input addonBefore="฿" disabled={formDisabled}/>)}
                 </Form.Item>
-                <Form.Item label="สถานที่เก็บพัสดุ">
+                <Form.Item label={t("modals.stock_sku.form.location.label")}>
                     {getFieldDecorator('location_object_id', {
                         rules: [
                             {
                                 required: true,
-                                message: "โปรดเลือกสถานที่เก็บพัสดุ",
+                                message: t("modals.stock_sku.form.validation.location.required"),
                             },
                         ]
                     })(
-                        <Select showSearch placeholder="โปรดเลือก..." disabled={formDisabled} filterOption={locationSearchFilterAlgorithm}>
+                        <Select showSearch placeholder={t("modals.stock_sku.form.location.placeholder")} disabled={formDisabled} filterOption={locationSearchFilterAlgorithm}>
                             {stockLocationData?.map(item => <Select.Option key={item.object_id} value={item.object_id}>{item.title}</Select.Option>)}
                         </Select>
                     )}
                 </Form.Item>
-                <Form.Item label="วันที่ได้รับพัสดุ">
+                <Form.Item label={t("modals.stock_sku.form.received_date")}>
                     {getFieldDecorator('received_at', {
                         rules: [
                             {
                                 required: true,
-                                message: "โปรดป้อนวันที่ได้รับพัสดุ",
+                                message: t("modals.stock_sku.form.validation.received_date.required"),
                             },
                         ],
                     })(<DatePicker disabledDate={disabledReceivedDate} disabled={formDisabled}/>)}
                 </Form.Item>
-                <Form.Item label="เจ้าของพัสดุ">
+                <Form.Item label={t("modals.stock_sku.form.owner")}>
                     {getFieldDecorator('owner', {})(<Input disabled={formDisabled} />)}
                 </Form.Item>
             </Form>

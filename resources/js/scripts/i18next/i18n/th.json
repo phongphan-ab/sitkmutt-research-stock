@@ -164,6 +164,62 @@
                     }
                 }
             },
+            "cpanel_stocksku": {
+                "title": "รายละเอียดพัสดุ",
+                "description_items": {
+                    "title": "ชื่อ",
+                    "category": "ประเภท",
+                    "is_visible": {
+                        "title": "แสดงเป็นสาธารณะ",
+                        "value": {
+                            "true": "ใช่",
+                            "false": "ไม่ใช่"
+                        }
+                    },
+                    "created_date": "วันที่สร้าง",
+                    "updated_date": "วันที่แก้ไขล่าสุด"
+                },
+                "actions": {
+                    "buttons": {
+                        "add": "เพิ่ม"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "code": "รหัสครุภัณฑ์",
+                            "serial_no": "หมายเลขซีเรียล",
+                            "location": "สถานที่เก็บพัสดุ",
+                            "discarded": "การถูกจำหน่าย",
+                            "actions": "การกระทำ"
+                        },
+                        "body": {
+                            "discarded": {
+                                "no_discard": "ยังไม่ถูกจำหน่าย",
+                                "discarded": "ถูกจำหน่ายแล้ว"
+                            },
+                            "actions": {
+                                "title": "ตัวเลือก",
+                                "dropdown": {
+                                    "edit": "แก้ไข",
+                                    "delete": {
+                                        "title": "ลบ",
+                                        "alert": {
+                                            "title": "แน่ใจหรือไม่ ?",
+                                            "description": "การดำเนินการนี้จะไม่สามารถเลิกทำได้ คุณแน่ใจหรือไม่ที่จะลบพัสดุย่อย {{stock_sku_id}} ?",
+                                            "buttons": {
+                                                "ok": "ลบ",
+                                                "cancel": "ยกเลิก"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "login": {
                 "form": {
                     "username": {
@@ -286,6 +342,42 @@
                 "success_text": {
                     "add": "เพิ่มสถานที่เก็บพัสดุแล้ว",
                     "edit": "แก้ไขสถานที่เก็บพัสดุแล้ว"
+                }
+            },
+            "stock_sku": {
+                "title": "เพิ่มพัสดุย่อย",
+                "form": {
+                    "code": "รหัสครุภัณฑ์",
+                    "serial_no": "หมายเลขซีเรียล",
+                    "description": "คำอธิบาย",
+                    "price": " ราคา",
+                    "location": {
+                        "label": "สถานที่เก็บพัสดุ",
+                        "placeholder": "โปรดเลือก..."
+                    },
+                    "received_date": "วันที่ได้รับพัสดุ",
+                    "owner": "เจ้าของพัสดุ",
+                    "validation": {
+                        "code": {
+                            "required": "โปรดป้อนรหัสครุภัณฑ์"
+                        },
+                        "price": {
+                            "pattern": "โปรดป้อนราคาพัสดุที่ถูกต้อง"
+                        },
+                        "location": {
+                            "required": "โปรดเลือกสถานที่เก็บพัสดุ"
+                        },
+                        "received_date": {
+                            "required": "โปรดป้อนวันที่ได้รับพัสดุ"
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "เพิ่ม"
+                },
+                "cancel_text": "ยกเลิก",
+                "success_text": {
+                    "add": "เพิ่มพัสดุย่อยเรียบร้อยแล้ว"
                 }
             }
         },

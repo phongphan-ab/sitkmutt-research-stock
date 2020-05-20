@@ -164,6 +164,62 @@
                     }
                 }
             },
+            "cpanel_stocksku": {
+                "title": "Stock Detail",
+                "description_items": {
+                    "title": "Title",
+                    "category": "Category",
+                    "is_visible": {
+                        "title": "Appear in Public",
+                        "value": {
+                            "true": "Yes",
+                            "false": "No"
+                        }
+                    },
+                    "created_date": "Creation Date",
+                    "updated_date": "Modification Date"
+                },
+                "actions": {
+                    "buttons": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "code": "Code",
+                            "serial_no": "Serial No.",
+                            "location": "Locations",
+                            "discarded": "Discarded",
+                            "actions": "Actions"
+                        },
+                        "body": {
+                            "discarded": {
+                                "no_discard": "No discard yet.",
+                                "discarded": "Discarded"
+                            },
+                            "actions": {
+                                "title": "Options",
+                                "dropdown": {
+                                    "edit": "Edit",
+                                    "delete": {
+                                        "title": "Delete",
+                                        "alert": {
+                                            "title": "Are you sure ?",
+                                            "description": "This opreation cannot be undone! Are you sure to remove {{stock_sku_id}}?",
+                                            "buttons": {
+                                                "ok": "Delete",
+                                                "cancel": "Cancel"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "login": {
                 "form": {
                     "username": {
@@ -286,6 +342,42 @@
                 "success_text": {
                     "add": "Stock localtion created.",
                     "edit": "Stock location modified."
+                }
+            },
+            "stock_sku": {
+                "title": "Add Sub-stock",
+                "form": {
+                    "code": "Code",
+                    "serial_no": "Serial No.",
+                    "description": "Description",
+                    "price": "Price",
+                    "location": {
+                        "label": "Location",
+                        "placeholder": "Please select..."
+                    },
+                    "received_date": "Received Date",
+                    "owner": "Owner",
+                    "validation": {
+                        "code": {
+                            "required": "Please type a code."
+                        },
+                        "price": {
+                            "pattern": "Please type a valid price."
+                        },
+                        "location": {
+                            "required": "Please select a stock location."
+                        },
+                        "received_date": {
+                            "required": "Please select the received date."
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "Add"
+                },
+                "cancel_text": "Cancel",
+                "success_text": {
+                    "add": "Sub-stock added."
                 }
             }
         },
