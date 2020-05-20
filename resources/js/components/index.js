@@ -1,4 +1,5 @@
 import CpanelStocksFormModal from './CpanelStocksFormModal'
+import CpanelStockSkuFormModal from './CpanelStockSkuFormModal'
 import DeleteStockCategoryButton from './DeleteStockCategoryButton'
 import DeleteStockLocationButton from './DeleteStockLocationButton'
 import DrawerMenu from './DrawerMenu'
@@ -13,6 +14,7 @@ import StockLocationFormModal from './StockLocationFormModal'
 
 export {
     CpanelStocksFormModal,
+    CpanelStockSkuFormModal,
     DeleteStockCategoryButton,
     DeleteStockLocationButton,
     DrawerMenu,
