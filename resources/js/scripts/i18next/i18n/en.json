@@ -1,0 +1,401 @@
+{
+    "translation": {
+        "navbar": {
+            "search_placeholder": "Search any stocks here...",
+            "notification": {
+                "title": "Notifications"
+            },
+            "profile": {
+                "menus": {
+                    "requests": "Request Histories",
+                    "settings": "Settings",
+                    "logout": "Log Out"
+                }
+            }
+        },
+        "sider": {
+            "title": "Menus",
+            "menus": {
+                "stock_categories": "Stock Categories",
+                "control_panel": "Control Panel",
+                "control_panels": {
+                    "users": "Users",
+                    "stocks": "Stocks",
+                    "stock_categories": "Stock Categories",
+                    "stock_locations": "Stock Locations",
+                    "requests": "Requests",
+                    "reports": "Reports"
+                }
+            }
+        },
+        "pages": {
+            "cpanel_stockcategories": {
+                "title": "Stock Categories",
+                "actions": {
+                    "button": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "list": {
+                        "hidden": "Hidden",
+                        "buttons": {
+                            "edit": "Edit",
+                            "delete": {
+                                "tooltip": {
+                                    "system_default": "It is a system default that cannot be removed."
+                                },
+                                "popconfirm": {
+                                    "description": "All stocks which in here will be moved to \"Other\" category.<br />Are you sure to delete this stock category ?",
+                                    "buttons": {
+                                        "ok": "Delete",
+                                        "cancel": "Cancel"
+                                    }
+                                },
+                                "toast_success": "Stock category deleted."
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "loading": {
+                        "title": "Loading..."
+                    },
+                    "empty": {
+                        "description": "No stock category available yet. Press \"Add\" to add it."
+                    },
+                    "error": {
+                        "title": "Error Occurred",
+                        "description": "An error occurred while loading data. Please refresh this page or try again later.",
+                        "http_error_code": "Error Code: HTTP {{code}}"
+                    }
+                }
+            },
+            "cpanel_stocklocations": {
+                "title": "Stock Locations",
+                "actions": {
+                    "button": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "list": {
+                        "hidden": "Hidden",
+                        "buttons": {
+                            "edit": "Edit",
+                            "delete": {
+                                "tooltip": {
+                                    "system_default": "It is a system default that cannot be removed."
+                                },
+                                "popconfirm": {
+                                    "description": "All stocks which located at here will be moved to \"Other\" location.<br />Are you sure to delete this stock location ?",
+                                    "buttons": {
+                                        "ok": "Delete",
+                                        "cancel": "Cancel"
+                                    }
+                                },
+                                "toast_success": "Stock location deleted."
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "loading": {
+                        "title": "Loading..."
+                    },
+                    "empty": {
+                        "description": "No stock location available yet. Press \"Add\" to add it."
+                    },
+                    "error": {
+                        "title": "Error Occurred",
+                        "description": "An error occurred while loading data. Please refresh this page or try again later.",
+                        "http_error_code": "Error Code: HTTP {{code}}"
+                    }
+                }
+            },
+            "cpanel_stocks": {
+                "title": "Stock",
+                "action": {
+                    "buttons": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "name": "Title",
+                            "category": "Category",
+                            "total_amount": "Total",
+                            "borrowed_amount": "Borrowed Amount",
+                            "discarded_amount": "Discarded Amount",
+                            "remaining_anmount": "Remaining Amount",
+                            "actions": "Actions"
+                        },
+                        "body": {
+                            "actions": {
+                                "title": "Options",
+                                "dropdown": {
+                                    "edit": "Edit",
+                                    "delete": {
+                                        "title": "Delete",
+                                        "alert": {
+                                            "title": "Are you sure ?",
+                                            "description": "This opreation cannot be undone ! Are you sure to remove {{stock_name}} ?",
+                                            "buttons": {
+                                                "ok": "Delete",
+                                                "cancel": "Cancel"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "empty": {
+                        "description": "No stock available yet. Press \"Add\" to add it."
+                    },
+                    "error": {
+                        "title": "Error Occurred",
+                        "description": "An error occurred while loading data. Please refresh this page or try again later.",
+                        "http_error_code": "Error Code: HTTP {{code}}"
+                    }
+                }
+            },
+            "cpanel_stocksku": {
+                "title": "Stock Detail",
+                "description_items": {
+                    "title": "Title",
+                    "category": "Category",
+                    "is_visible": {
+                        "title": "Appear in Public",
+                        "value": {
+                            "true": "Yes",
+                            "false": "No"
+                        }
+                    },
+                    "created_date": "Creation Date",
+                    "updated_date": "Modification Date"
+                },
+                "actions": {
+                    "buttons": {
+                        "add": "Add"
+                    }
+                },
+                "content": {
+                    "table": {
+                        "header": {
+                            "id": "ID",
+                            "code": "Code",
+                            "serial_no": "Serial No.",
+                            "location": "Locations",
+                            "discarded": "Discarded",
+                            "actions": "Actions"
+                        },
+                        "body": {
+                            "discarded": {
+                                "no_discard": "No discard yet.",
+                                "discarded": "Discarded"
+                            },
+                            "actions": {
+                                "title": "Options",
+                                "dropdown": {
+                                    "edit": "Edit",
+                                    "delete": {
+                                        "title": "Delete",
+                                        "alert": {
+                                            "title": "Are you sure ?",
+                                            "description": "This opreation cannot be undone! Are you sure to remove {{stock_sku_id}}?",
+                                            "buttons": {
+                                                "ok": "Delete",
+                                                "cancel": "Cancel"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "login": {
+                "form": {
+                    "username": {
+                        "label": "Username",
+                        "placeholder": "School e-mail's username.",
+                        "validation": {
+                            "required": "Please type an username."
+                        }
+                    },
+                    "password": {
+                        "label": "Password",
+                        "placeholder": "School e-mail's password.",
+                        "validation": {
+                            "required": "Please type a password."
+                        }
+                    }
+                },
+                "button": {
+                    "login": "Login"
+                },
+                "spinner": {
+                    "loading": "Loading..."
+                }
+            }
+        },
+        "modals": {
+            "stock": {
+                "title_add": "Add A Stock",
+                "title_edit": "Edit A Stock",
+                "form": {
+                    "title": {
+                        "label": "Title",
+                        "validation": {
+                            "required": "Please type a title."
+                        }
+                    },
+                    "category": {
+                        "label": "Category",
+                        "placeholder": "Please select...",
+                        "validation": {
+                            "required": "Please select a category."
+                        }
+                    },
+                    "description": {
+                        "label": "Description"
+                    },
+                    "pictures": {
+                        "label": "Picture",
+                        "description": "Select 1 file per time that is not larger than 4 MB. 9 files is maximum.",
+                        "button": {
+                            "select": "Select file..."
+                        }
+                    },
+                    "is_visible": {
+                        "label": "Appear in Public"
+                    }
+                },
+                "button": {
+                    "ok_add": "Add",
+                    "ok_edit": "Edit",
+                    "cancel": "Cancel"
+                },
+                "alert": {
+                    "picture_amount_exceeded": {
+                        "title": "Limit Exceeded",
+                        "description": "Selected file amount and previous file amount are exceeded to upload.",
+                        "ok_text": "OK"
+                    }
+                },
+                "toast": {
+                    "success_add": "Stock created.",
+                    "success_edit": "Stock created."
+                }
+            },
+            "stock_category": {
+                "title": {
+                    "add": "Add Stock Category",
+                    "edit": "Edit Stock Category"
+                },
+                "form": {
+                    "title": "Title",
+                    "description": "Description",
+                    "visible": "Appear in Public",
+                    "validation": {
+                        "title": {
+                            "required": "Please type a title."
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "Add",
+                    "edit": "Edit"
+                },
+                "cancel_text": "Cancel",
+                "success_text": {
+                    "add": "Stock category created.",
+                    "edit": "Stock category modified."
+                }
+            },
+            "stock_location": {
+                "title": {
+                    "add": "Add Stock Location",
+                    "edit": "Edit Stock Location"
+                },
+                "form": {
+                    "title": "Title",
+                    "description": "Description",
+                    "visible": "Appear in Public",
+                    "validation": {
+                        "title": {
+                            "required": "Please type a title."
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "Add",
+                    "edit": "Edit"
+                },
+                "cancel_text": "Cancel",
+                "success_text": {
+                    "add": "Stock localtion created.",
+                    "edit": "Stock location modified."
+                }
+            },
+            "stock_sku": {
+                "title": "Add Sub-stock",
+                "form": {
+                    "code": "Code",
+                    "serial_no": "Serial No.",
+                    "description": "Description",
+                    "price": "Price",
+                    "location": {
+                        "label": "Location",
+                        "placeholder": "Please select..."
+                    },
+                    "received_date": "Received Date",
+                    "owner": "Owner",
+                    "validation": {
+                        "code": {
+                            "required": "Please type a code."
+                        },
+                        "price": {
+                            "pattern": "Please type a valid price."
+                        },
+                        "location": {
+                            "required": "Please select a stock location."
+                        },
+                        "received_date": {
+                            "required": "Please select the received date."
+                        }
+                    }
+                },
+                "ok_text": {
+                    "add": "Add"
+                },
+                "cancel_text": "Cancel",
+                "success_text": {
+                    "add": "Sub-stock added."
+                }
+            }
+        },
+        "alert": {
+            "title_error": "Error Occurred",
+            "messages": {
+                "err_skustock_remaining": "Can't delete this stock because it has at least 1 stock SKU.",
+                "other": {
+                    "description": "An error occurred while sending data to the server. Please try again later.",
+                    "http_error_code": "Error Code: HTTP {{code}}"
+                }
+            },
+            "button": {
+                "ok": "OK"
+            }
+        },
+        "footer": {
+            "copyright_text": "\u00a9 {{year_ad}} School of Information Technology, KMUTT. All right reserved."
+        }
+    }
+}
